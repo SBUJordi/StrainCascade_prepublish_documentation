@@ -1,4 +1,3 @@
 ---
-title: "Overview"
-author: "Sebastian Bruno Ulrich Jordi"
+title: "Welcome to StrainCascade"
 ---
