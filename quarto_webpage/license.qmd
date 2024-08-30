@@ -1,0 +1,136 @@
+---
+title: "StrainCascade software licenses"
+---
+
+# Software license for StrainCascade
+
+```         
+StrainCascade License
+
+Version 1.0, June 2024
+
+Sebastian Bruno Ulrich Jordi ("Licensor") hereby grants permission to any person or entity ("Licensee") to use StrainCascade, subject to the following conditions:
+
+1.  Ownership and Attribution:
+
+    -   StrainCascade, including all associated original scripts, images, and documentation (the "Software"), is owned by Sebastian Bruno Ulrich Jordi.
+    -   This Software integrates third-party software, which is subject to its respective licenses. Licensee must comply with all applicable third-party licenses.
+    -   Licensee must retain the following attribution notice in all copies or substantial portions of the Software: © 2024 Sebastian Bruno Ulrich Jordi. All rights reserved.
+
+2.  Modular Structure and Licensing:
+
+    -   StrainCascade is a modular tool where most third-party software is executed in separate scripts, allowing each module to be executed independently of the others.
+    -   Original scripts within the Software that do not encode third-party software with conflicting licenses are governed by this license. These scripts explicitly include but are not limited to the following: straincascade, StrainCascade_run_configuration_handler.py, StrainCascade_pipeline_wrapper.sh, StrainCascade_assembly_selection.py, StrainCascade_input_file_handler.sh XXXXXXXXX
+    -   Scripts that encode third-party software are governed by this license only to the extent that it does not conflict with the licenses of the third-party software. In cases of conflict, the third-party software's license shall apply exclusively to the relevant script or module.
+
+3.  Permitted Use:
+
+    -   The original components of the Software may be used publicly only for research and non-profit purposes. Commercial use of the original components by Licensee is expressly prohibited.
+    -   Licensee may modify the original components of the Software for their research purposes, provided that:
+        -   Any modifications are also used solely for research and non-profit purposes.
+        -   Modifications must be made available for unrestricted use by others under the same terms as this license.
+    -   Use of incorporated third-party software must comply with their respective licenses.
+
+4.  Licensor's Rights:
+
+    -   The Licensor reserves the exclusive right to use the Software and any modifications commercially.
+
+5.  Publication and Citation:
+
+    -   Any publication, presentation, or other dissemination of research results obtained using the Software must include a citation to the following source: Jordi, S. B. U. (2024). StrainCascade. https://github.com/SBUJordi/StrainCascade.
+    -   Failure to provide proper citation constitutes a breach of this license.
+
+6.  Redistribution:
+
+    -   Licensee may redistribute the original components of the Software, provided that this license agreement is included with any such redistribution and that the redistributed Software retains the attribution notice and citation requirement.
+    -   Modifications to the Software must be made available for unrestricted use by others under the same terms as this license.
+    -   Redistribution of third-party software must comply with their respective licenses.
+
+7.  Warranty Disclaimer:
+
+    -   The original components of the Software are provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement.
+    -   The Licensor makes no warranties regarding third-party software included in the Software.
+    -   In no event shall the Licensor be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the original components of the Software or the use or other dealings in the original components of the Software.
+
+8.  Governing Law:
+
+    -   This License shall be governed by and construed in accordance with Swiss law, without regard to its conflict of law principles.
+
+By using the Software, Licensee agrees to be bound by the terms and conditions of this License and the respective licenses of the third-party software included in the Software.
+```
+
+# Software Licenses for Third-Party Tools Used in StrainCascade
+
+> **Disclaimer**: The information provided here is for general guidance only. We do not guarantee the correctness or completeness of the license details listed. The authors and maintainers of StrainCascade are not liable for any discrepancies or legal issues that may arise from using the software. Users are strongly encouraged to verify the licenses of the software tools themselves to ensure compliance with their intended use.
+
+------------------------------------------------------------------------
+
+### LJA Assembly
+
+-   **Main tool:** La Jolla Assembler
+
+-   **StrainCascade module:** SC2
+
+-   **StrainCascade script:** StrainCascade_LJA_assembly.sh
+
+-   **License:** BSD-3-Clause
+
+-   **Tool URL:** [LJA](https://github.com/AntonBankevich/LJA)
+
+-   **Information added:** August 18, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/lja_license.qmd" >}}
+
+</details>
+
+### SPAdes Assembly
+
+-   **Main tool:** SPAdes
+
+-   **StrainCascade module:** SC3
+
+-   **StrainCascade script:** StrainCascade_SPAdes_assembly.sh
+
+-   **License:** GNU GPL v2
+
+-   **Tool URL:** [SPAdes](https://github.com/ablab/spades)
+
+-   **Information added:** August 18, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/spades_license.qmd" >}}
+
+</details> 
+
+### Canu Assembly
+
+-   **Tool Name:** Canu
+
+-   **StrainCascade module:** SC4
+
+-   **StrainCascade script:** StrainCascade_Canu_assembly.sh
+
+-   **License:** GNU GPL v2
+
+-   **Tool URL:** [SPAdes](https://github.com/ablab/spades)
+
+-   **Information added:** August 18, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/spades_license.qmd" >}}
+
+</details> 
+
