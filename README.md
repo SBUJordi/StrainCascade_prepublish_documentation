@@ -8,7 +8,7 @@ StrainCascade is a modular bioinformatics pipeline designed to comprehensively p
 
 -   Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)
 
--   \~ 500GB disk space software and reference databases
+-   \~ 550GB disk space software and reference databases
 
 ## Installation dependencies
 
