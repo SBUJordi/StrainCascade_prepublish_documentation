@@ -189,25 +189,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<pre class="console"><code>straincascade -i input [-o output_directory] [-s seq_type] [-t threads] [-r result_type] [-m modules] [-f force_overwrite] [-d databases_directory] [-l locus_tag] [-h] [-v]
-
-  -i  input               Input file or directory containing files (mandatory). Valid file formats include: `.fasta`, `.fa`, `.fastq`, `.fastq.gz`, `.fna`, and `.bam`. 
-  -o  output_directory    Output directory (default: current working directory).
-  -s  seq_type            Sequence type (default: pacbio-hifi). Options are: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq.
-  -t  threads             Number of threads (default: 32).
-  -m  modules             Modules to run (default: all). Use comma-separated or space-separated values for multiple modules.
-  -r  result_type         Result type (default: main). Options are: all, main, R.
-  -f  force_overwrite     Force overwrite existing results (default: yes). Options are: yes | no. (Note: 'no' does not always guarantee that nothing will be overwritten.)
-  -d  databases_directory Path to databases directory (default: StrainCascade/databases).
-                          Note: Custom database locations must maintain the same structure and naming of subdirectories/files as the default installation.
-  -l  locus_tag           Specify your own locus tag for genome annotation (default: automatically generated). Must contain between 3 and 12 alphanumeric uppercase characters and start with a letter.
-  -h                      Show this help message and exit.
-  -v                      Show version information and exit.</code></pre>
+<pre class="console"><code>Usage: straincascade (-i input | -a assembly) [-o output_directory] [-s seq_type] [-t threads] [-r result_type] [-e execution_mode | -b bundle] [-f force_overwrite] [-d databases_directory] [-l locus_tag] [-h] [-v]
+  -i  input               Input file or directory containing sequencing files (mutually exclusive with -a); valid file extensions include: .fasta, .fna, .fa, .fastq, .fastq.gz, and .bam
+  -a  assembly            Input assembly file or directory containing assembly files (mutually exclusive with -i); valid file extensions include: .fasta, .fna, .fa
+  -o  output_directory    Output directory (default: current working directory)
+  -s  seq_type            Sequence type (default: pacbio-hifi). Options are: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
+  -t  threads             Number of threads (default: 32)
+  -e  execution_mode      Execution mode (mutually exclusive with -b). Options are: minimal | efficient | standard | comprehensive | custom
+                          For custom mode, indicate the modules to run; e.g., "custom:SC1,SC2,SC3"
+  -b  bundle              Bundle of modules to run (mutually exclusive with -e). Options are: assembly | annotation | functional | phage
+  -r  result_type         Result type (default: main). Options are: all, main, R
+  -f  force_overwrite     Force overwrite existing results (default: yes). Options are: yes | no
+  -d  databases_directory Path to databases directory (default: StrainCascade/databases)
+  -l  locus_tag           Specify your own locus tag for genome annotation (default: automatically generated); must contain between 3 and 12 alphanumeric uppercase characters and start with a letter
+  -h                      Show detailed help message
+  -v                      Show version information</code></pre>
 <section id="quick-start" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">1</span> Quick start</h2>
-<p>To quickly run the StrainCascade pipeline on a sequencing sample from the command line, use the following minimal command:</p>
+<p>To quickly run StrainCascade on a sequencing file from the command line interface, use the following minimal command:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-i</span> /path/to/your/input_file.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Note:</strong> Running the StrainCascade is resource-intensive and will overwhelm standard desktop or laptop computers. For optimal performance, we strongly recommend using a high-performance computing (HPC) environment.</p>
+<p><strong>Note:</strong> Running StrainCascade is resource-intensive and will overwhelm standard desktop or laptop computers. For optimal performance, we strongly recommend using a high-performance computing (HPC) environment.</p>
 <p>For efficient execution, it’s recommended to submit the pipeline as a SLURM <code>sbatch</code> job. Below is an example of a basic SLURM submission script. Be sure to adjust the <code>--partition</code> parameter to match your environment:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash #SBATCH </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--job-name=</span><span class="st">"StrainCascade"</span> </span>

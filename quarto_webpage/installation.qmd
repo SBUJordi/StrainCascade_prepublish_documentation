@@ -26,7 +26,7 @@ title: "Installation"
 
     4.  Version control: Precise management of software versions and their interactions Isolation: Minimises conflicts with existing system libraries
 
-## Installation steps
+## Default installation
 
 Clone the StrainCascade GitHub repository
 
@@ -69,4 +69,24 @@ y
 
 The installation process will take a while.
 
+## Custom Installation (Selective Apptainer images/databases)
 
+In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose `n` when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.
+
+This option is particularly useful in scenarios where:
+
+-   You have limited disk space or bandwidth and need to prioritize specific components.
+
+-   You encountered an error during a previous installation attempt and need to retry specific parts of the installation.
+
+-   You are troubleshooting and want to isolate certain components for testing.
+
+When opting for a selective installation, the script will guide you through each component, providing a brief description and asking whether you wish to install it. This process ensures that only the necessary components are downloaded, giving you full control over the installation.
+
+Example Prompt:
+
+``` console
+Do you want to install checkm2_db? (y/n)
+```
+
+By answering y or n to each prompt, you can customise the installation to your specific needs.

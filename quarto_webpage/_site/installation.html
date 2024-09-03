@@ -165,7 +165,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#system-requirements" id="toc-system-requirements" class="nav-link active" data-scroll-target="#system-requirements"><span class="header-section-number">1</span> System requirements</a></li>
   <li><a href="#installation-dependencies" id="toc-installation-dependencies" class="nav-link" data-scroll-target="#installation-dependencies"><span class="header-section-number">2</span> Installation dependencies</a></li>
-  <li><a href="#installation-steps" id="toc-installation-steps" class="nav-link" data-scroll-target="#installation-steps"><span class="header-section-number">3</span> Installation steps</a></li>
+  <li><a href="#default-installation" id="toc-default-installation" class="nav-link" data-scroll-target="#default-installation"><span class="header-section-number">3</span> Default installation</a></li>
+  <li><a href="#custom-installation-selective-apptainer-imagesdatabases" id="toc-custom-installation-selective-apptainer-imagesdatabases" class="nav-link" data-scroll-target="#custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">4</span> Custom Installation (Selective Apptainer images/databases)</a></li>
   </ul>
 </nav>
     </div>
@@ -213,8 +214,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 </ul>
 </section>
-<section id="installation-steps" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="installation-steps"><span class="header-section-number">3</span> Installation steps</h2>
+<section id="default-installation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="default-installation"><span class="header-section-number">3</span> Default installation</h2>
 <p>Clone the StrainCascade GitHub repository</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Move to the StrainCascade directory</p>
@@ -231,6 +232,20 @@ Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
 <p>For a complete installation from scratch, choose <code>y</code> when asked:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The installation process will take a while.</p>
+</section>
+<section id="custom-installation-selective-apptainer-imagesdatabases" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">4</span> Custom Installation (Selective Apptainer images/databases)</h2>
+<p>In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose <code>n</code> when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.</p>
+<p>This option is particularly useful in scenarios where:</p>
+<ul>
+<li><p>You have limited disk space or bandwidth and need to prioritize specific components.</p></li>
+<li><p>You encountered an error during a previous installation attempt and need to retry specific parts of the installation.</p></li>
+<li><p>You are troubleshooting and want to isolate certain components for testing.</p></li>
+</ul>
+<p>When opting for a selective installation, the script will guide you through each component, providing a brief description and asking whether you wish to install it. This process ensures that only the necessary components are downloaded, giving you full control over the installation.</p>
+<p>Example Prompt:</p>
+<pre class="console"><code>Do you want to install checkm2_db? (y/n)</code></pre>
+<p>By answering y or n to each prompt, you can customise the installation to your specific needs.</p>
 
 
 </section>
