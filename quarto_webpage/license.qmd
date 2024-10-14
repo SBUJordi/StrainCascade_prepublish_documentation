@@ -65,6 +65,31 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 ------------------------------------------------------------------------
 
+### Canu Assembly
+
+-   **Tool Name:** Canu
+
+-   **StrainCascade module:** SC1 and SC4
+
+-   **StrainCascade script:** StrainCascade_Canu_correct_trim.sh and StrainCascade_Canu_assembly.sh
+
+-   **License:** GNU GPL v2, BSD-3-Clause, Public Domain Notice (for U.S. Government work), Pacific Biosciences License
+
+-   **Tool URL:** [Canu](https://github.com/marbl/canu)
+
+-   **Information added:** October 03, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/canu_license.qmd" >}}
+
+</details> 
+
+</details> 
+
 ### LJA Assembly
 
 -   **Main tool:** La Jolla Assembler
@@ -111,26 +136,111 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 </details> 
 
-### Canu Assembly
+### Flye Assembly
 
--   **Tool Name:** Canu
+-   **Tool Name:** Flye
 
--   **StrainCascade module:** SC4
+-   **StrainCascade module:** SC5
 
--   **StrainCascade script:** StrainCascade_Canu_assembly.sh
+-   **StrainCascade script:** StrainCascade_Flye_assembly.sh
 
--   **License:** GNU GPL v2
+-   **License:** BSD-3-Clause
 
--   **Tool URL:** [SPAdes](https://github.com/ablab/spades)
+-   **Tool URL:** [Flye](https://github.com/mikolmogorov/Flye)
 
--   **Information added:** August 18, 2024
+-   **Information added:** October 13, 2024
 
 -   **Full license text:**
 
 <details>
 <summary>Click to expand</summary>
 
-{{< include "_includes/spades_license.qmd" >}}
+{{< include "_includes/flye_license.qmd" >}}
+
+</details> 
+
+### MAC2.0 Assembly Merging
+
+-   **Tool Name:** MAC2.0
+
+-   **StrainCascade module:** SC7
+
+-   **StrainCascade script:** StrainCascade_MAC2_assembly_merging.sh
+
+-   **License:** No license information is available to the best of our knowledge. Users are responsible for verifying the accuracy and appropriateness of any license information before use.
+
+-   **Tool URL:** [MAC2.0](https://github.com/bioinfomaticsCSU/MAC)
+
+-   **Information added:** October 13, 2024 
+
+### Circlator Circularisation
+
+-   **Tool Name:** Circlator
+
+-   **StrainCascade module:** SC9
+
+-   **StrainCascade script:** StrainCascade_Circlator_circularisation.sh
+
+-   **License:** GNU GPL v3
+
+-   **Tool URL:** [Circlator](https://github.com/mikolmogorov/Flye)
+
+-   **Information added:** October 14, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/circlator_license.qmd" >}}
+
+</details> 
+
+### Arrow polishing
+
+-   **Tool Name:** arrow
+
+-   **StrainCascade module:** SC11
+
+-   **StrainCascade script:** StrainCascade_arrow_medaka_polishing.sh
+
+-   **License:** BSD-3-Clause-Clear
+
+-   **Tool URL:** [bioconda genomicconsensus](https://anaconda.org/bioconda/genomicconsensus)
+-   **Tool URL:** [git pbbioconda](https://github.com/PacificBiosciences/pbbioconda)
+
+-   **Information added:** October 14, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/arrow_conda_genomicconsensus_license.qmd" >}}
+
+</details> 
+
+### Medaka polishing
+
+-   **Tool Name:** medaka
+
+-   **StrainCascade module:** SC11
+
+-   **StrainCascade script:** StrainCascade_arrow_medaka_polishing.sh
+
+-   **License:** Oxford Nanopore Technologies PLC. Public License Version 1.0 / MPL-2.0 
+
+-   **Tool URL:** [bioconda medaka](https://anaconda.org/bioconda/medaka)
+-   **Tool URL:** [git medaka](https://github.com/nanoporetech/medaka)
+
+-   **Information added:** October 14, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/medaka_conda_genomicconsensus_license.qmd" >}}
 
 </details> 
 
