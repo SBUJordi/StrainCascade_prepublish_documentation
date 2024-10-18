@@ -16,6 +16,8 @@ title: "Installation"
 
 -   [Apptainer](https://apptainer.org/)
 
+-   (Optional: [Conda/Miniconda](https://docs.anaconda.com/miniconda/))
+
 -   All further software dependencies (listed in detail under [Dependencies](dependencies.qmd)) are bundled in Apptainer images, which are automatically downloaded and used when installing/running StrainCascade. This approach enhances:
 
     1.  Ease of use: Simplified installation and execution process
@@ -26,9 +28,29 @@ title: "Installation"
 
     4.  Version control: Precise management of software versions and their interactions Isolation: Minimises conflicts with existing system libraries
 
-## Default installation
+## Default installation (interactive)
 
-Clone the StrainCascade GitHub repository
+For standard installation with the command-line interface, follow these steps:
+
+Optional: Create a conda environment for StrainCascade
+
+``` bash
+conda create -n StrainCascade_env
+```
+
+Optional: Activate the conda environment
+
+``` bash
+conda activate StrainCascade_env
+```
+
+Optional: Move to your StrainCascade conda environment directory (StrainCascade_env)
+
+``` bash
+cd $CONDA_PREFIX
+```
+
+Clone the StrainCascade GitHub repository to your current working directory
 
 ``` bash
 git clone https://github.com/SBUJordi/StrainCascade.git
@@ -67,7 +89,54 @@ For a complete installation from scratch, choose `y` when asked:
 y
 ```
 
-The installation process will take a while.
+The installation process will take a while depending on your setting (12h - >1d).
+
+## Default installation (SBATCH)
+
+If you are using an institutional HPC (High-Performance Computing) account with SLURM (Simple Linux Utility for Resource Management), you can install StrainCascade using SBATCH. Follow these steps:
+
+Optional - Create and activate a conda environment for StrainCascade:
+
+
+``` bash
+conda create -n StrainCascade_env
+conda activate StrainCascade_env
+```
+
+Optional - Navigate to your StrainCascade conda environment directory:
+
+
+``` bash
+cd $CONDA_PREFIX
+```
+
+Clone the StrainCascade GitHub repository to your current working directory
+
+``` bash
+git clone https://github.com/SBUJordi/StrainCascade.git
+```
+
+Navigate to the new StrainCascade directory
+
+``` bash
+cd StrainCascade
+```
+
+Make the StrainCascade scripts executable
+
+``` bash
+chmod +x scripts/*
+```
+
+Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.
+
+``` bash
+./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh your_partition your.email@example.com
+```
+
+Replace `your_partition` with your HPC's SLURM partition name and `your.email@example.com` with your email address for job notifications.
+
+The installation will be handled by SLURM and may take between 12 hours to over a day, depending on your system and network speed. You will receive an email notification when the installation is complete or if it fails.
 
 ## Custom Installation (Selective Apptainer images/databases)
 

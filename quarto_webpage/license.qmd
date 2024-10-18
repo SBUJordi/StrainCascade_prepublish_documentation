@@ -244,3 +244,72 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 </details> 
 
+### NGMLR coverage assessment
+
+-   **Tool Name:** NGMLR
+
+-   **StrainCascade module:** SC12
+
+-   **StrainCascade script:** StrainCascade_NGMLR_BBMap_coverage.sh
+
+-   **License:** MIT 
+
+-   **Tool URL:** [NGMLR](https://github.com/philres/ngmlr)
+
+-   **Information added:** October 17, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/ngmlr_license.qmd" >}}
+
+</details>  
+
+### BBMap coverage assessment
+
+-   **Tool Name:** BBMap
+
+-   **StrainCascade module:** SC12
+
+-   **StrainCascade script:** StrainCascade_NGMLR_BBMap_coverage.sh
+
+-   **License:** BSD 3-Clause-like 
+
+-   **Tool URL:** [NGMLR](https://github.com/philres/ngmlr)
+
+-   **Information added:** October 17, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/bbmap_license.qmd" >}}
+
+</details>   
+
+### CheckM2 QC
+
+-   **Tool Name:** CheckM2
+
+-   **StrainCascade module:** SC13
+
+-   **StrainCascade script:** StrainCascade_CheckM2_QC.sh
+
+-   **License:** GNU GPL v3
+
+-   **Tool URL:** [CheckM2](https://github.com/chklovski/CheckM2)
+
+-   **Information added:** October 17, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/checkm2_license.qmd" >}}
+
+</details> 
+
