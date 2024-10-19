@@ -36,7 +36,7 @@ format:
     toc-depth: 3
     toc-title: Contents
     number-sections: true
-    highlight-style: github
+    highlight-style: nord
     code-fold: true
     code-tools: false
     mainfont: "Source Sans Pro"

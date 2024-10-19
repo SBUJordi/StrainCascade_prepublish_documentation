@@ -2,8 +2,12 @@
 :root {
   --main-navbar-color: #336392;
   --main-font: 'Source Sans Pro', sans-serif;
-  --link-color: #DC6826;
-  --hover-color: #DC6826;
+  --link-color: #336392;
+  --hover-color: #336392;
+  --inline-code-color: #333333;
+  --inline-code-bg: #E6E6E6;
+  --bash-code-color: #E6E6E6;
+  --bash-code-bg: #4D4D4D;
 }
 
 /* Apply custom font to all elements */
@@ -17,34 +21,31 @@ body, .navbar, .nav, .dataTables_wrapper, .dataTable, .table, h1, h2, h3, h4, h5
   border-color: var(--main-navbar-color) !important;
 }
 
-/* Ensure text is readable on custom backgrounds */
+/* Ensure text is white on custom backgrounds and remove underline */
 .navbar-brand,
 .navbar-nav > li > a {
   color: white !important;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 15px 10px !important;
+  margin: 0 5px !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
 }
 
-/* Set hover color for navbar text, including the title */
+/* Set hover and active styles for navbar items */
 .navbar-brand:hover,
 .navbar-nav > li > a:hover,
-.navbar-nav > li > a:focus {
-  color: var(--hover-color) !important;
-  background-color: transparent !important;
-}
-
-/* Style for active/selected navbar item and title */
+.navbar-nav > li > a:focus,
 .navbar-brand.active,
 .navbar-nav > .active > a,
 .navbar-nav > .active > a:hover,
 .navbar-nav > .active > a:focus,
 .navbar-nav > li > a[aria-current="page"] {
-  color: var(--hover-color) !important;
+  color: white !important;
   background-color: transparent !important;
-}
-
-/* Set border-top-color to custom color for active tabs */
-.nav-tabs > li.active > a {
-  border-top-color: var(--main-navbar-color) !important;
+  border: 1px solid white !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
 }
 
 /* Customize table styles */
@@ -71,15 +72,78 @@ a {
 .sidebar nav[role="doc-toc"] ul > li > a {
   color: black !important;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.sidebar nav[role="doc-toc"] ul > li > a:hover,
+.sidebar nav[role="doc-toc"] ul > li > a:hover {
+  color: var(--hover-color) !important;
+  text-decoration: none;
+}
+
 .sidebar nav[role="doc-toc"] ul > li > a.active {
   color: var(--hover-color) !important;
   text-decoration: none;
+  font-weight: bold !important;
 }
 
 /* Optional: Add hover effect for links */
 a:hover {
   text-decoration: underline;
+}
+
+/* Style for inline code */
+code:not(.sourceCode) {
+  color: var(--inline-code-color) !important;
+  background-color: var(--inline-code-bg) !important;
+  border: none !important;
+  padding: 2px 4px !important;
+  font-size: 0.9em !important;
+  border-radius: 3px !important;
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  vertical-align: middle !important;
+  white-space: pre !important;
+}
+
+/* Style for bash code blocks */
+pre.sourceCode.bash,
+div.sourceCode.bash,
+.cell-output pre:not([class]) {
+  background-color: var(--bash-code-bg) !important;
+  border: 1px solid #444 !important;
+  border-radius: 4px !important;
+  padding: 1em !important;
+  overflow-x: auto !important;
+}
+
+pre.sourceCode.bash code,
+div.sourceCode.bash code,
+.cell-output pre:not([class]) code {
+  color: var(--bash-code-color) !important;
+  background-color: var(--bash-code-bg) !important;
+  display: inline-block !important;
+  min-width: 100% !important;
+}
+
+/* Ensure all text within bash code blocks is the correct color */
+pre.sourceCode.bash *, 
+div.sourceCode.bash *,
+.cell-output pre:not([class]) * {
+  color: var(--bash-code-color) !important;
+}
+
+/* Fix for horizontal scrolling in code blocks */
+.sourceCode {
+  overflow-x: auto !important;
+}
+
+.sourceCode pre {
+  white-space: pre !important;
+}
+
+/* Ensure inline code maintains its style when breaking into multiple lines */
+p code {
+  white-space: pre !important;
+  word-break: keep-all !important;
 }

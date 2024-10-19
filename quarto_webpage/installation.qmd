@@ -26,8 +26,8 @@ title: "Installation"
 
     3.  Reproducibility: Ensures identical software environments for all users
 
-    4.  Version control: Precise management of software versions and their interactions 
-    
+    4.  Version control: Precise management of software versions and their interactions
+
     5.  Isolation: Minimises conflicts with existing system libraries
 
 ## Default installation (interactive)
@@ -73,7 +73,7 @@ Execute the installation script, which pulls Apptainer images and downloads data
 
 You will be prompted by an interactive installation guide if you have enough disk space.
 
-``` console
+```        
 Running StrainCascade installation...
 Sufficient disk space available: XXXGB
 Apptainer is installed.
