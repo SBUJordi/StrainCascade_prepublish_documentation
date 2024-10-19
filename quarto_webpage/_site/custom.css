@@ -69,21 +69,103 @@ a {
 }
 
 /* Table of Contents styles */
-.sidebar nav[role="doc-toc"] ul > li > a {
+/* Hide the TOC title */
+.sidebar nav[role="doc-toc"] > h2,
+.sidebar nav[role="doc-toc"] > h3 {
+  display: none !important; /* Hides the title of the TOC */
+}
+
+/* Target all TOC links, at any level of nesting */
+.sidebar nav[role="doc-toc"] ul li a {
   color: black !important;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.sidebar nav[role="doc-toc"] ul > li > a:hover {
+/* Hover effect for TOC links, at any nesting level */
+.sidebar nav[role="doc-toc"] ul li a:hover {
   color: var(--hover-color) !important;
   text-decoration: none;
 }
 
-.sidebar nav[role="doc-toc"] ul > li > a.active {
+/* Active effect for TOC links, at any nesting level */
+.sidebar nav[role="doc-toc"] ul li a.active {
   color: var(--hover-color) !important;
   text-decoration: none;
   font-weight: bold !important;
+}
+
+/* Recursive selector to ensure nested subsections are included */
+.sidebar nav[role="doc-toc"] ul li ul li a,
+.sidebar nav[role="doc-toc"] ul li ul li ul li a,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li a,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li ul li a {
+  color: black !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Recursive hover for all nested subsections */
+.sidebar nav[role="doc-toc"] ul li ul li a:hover,
+.sidebar nav[role="doc-toc"] ul li ul li ul li a:hover,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li a:hover,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li ul li a:hover {
+  color: var(--hover-color) !important;
+  text-decoration: none;
+}
+
+/* Recursive active state for all nested subsections */
+.sidebar nav[role="doc-toc"] ul li ul li a.active,
+.sidebar nav[role="doc-toc"] ul li ul li ul li a.active,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li a.active,
+.sidebar nav[role="doc-toc"] ul li ul li ul li ul li ul li a.active {
+  color: var(--hover-color) !important;
+  text-decoration: none;
+  font-weight: bold !important;
+}
+
+/* Ensure TOC active section's vertical line uses hover color */
+.sidebar nav[role="doc-toc"] ul li a.active::before,
+.sidebar nav[role="doc-toc"] ul li a:hover::before {
+  content: '';
+  display: inline-block;
+  width: 2px; /* Adjust the thickness of the line */
+  height: 100%; /* Full height of the link item */
+  background-color: var(--hover-color) !important; /* Use hover color */
+  position: absolute; /* Ensure it's positioned on the left */
+  left: 0; /* Stick it to the left side */
+  top: 0;
+}
+
+/* Ensure the parent li is positioned relative for proper placement of the line */
+.sidebar nav[role="doc-toc"] ul li {
+  position: relative;
+}
+
+/* Ensure TOC hover and active states are consistent for text color */
+.sidebar nav[role="doc-toc"] ul li a {
+  color: black !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar nav[role="doc-toc"] ul li a:hover {
+  color: var(--hover-color) !important;
+  text-decoration: none;
+}
+
+.sidebar nav[role="doc-toc"] ul li a.active {
+  color: var(--hover-color) !important;
+  text-decoration: none;
+  font-weight: bold !important;
+}
+
+/* Ensure nested subsections have the same hover and active effects */
+.sidebar nav[role="doc-toc"] ul li ul li a:hover::before,
+.sidebar nav[role="doc-toc"] ul li ul li a.active::before,
+.sidebar nav[role="doc-toc"] ul li ul li ul li a:hover::before,
+.sidebar nav[role="doc-toc"] ul li ul li ul li a.active::before {
+  background-color: var(--hover-color) !important;
 }
 
 /* Optional: Add hover effect for links */

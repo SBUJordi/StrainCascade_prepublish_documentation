@@ -92,10 +92,10 @@ sbatch your_SBATCH_script.sh
 
 For processing multiple sequencing files in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here's an example of how to set this up:
 
-As with the initial installation, you first need to navigate to the StrainCascade directory:
+First, navigate to the StrainCascade installation directory:
 
 ``` bash
-cd /path/to/your/StrainCascade
+cd $(dirname $(which straincascade))/..
 ```
 
 Then you can run the following command to generate the batch submission:
@@ -124,10 +124,10 @@ Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_f
 
 For processing multiple already assembled genomes in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here's an example of how to set this up:
 
-As with the initial installation, you first need to navigate to the StrainCascade directory:
+First, navigate to the StrainCascade installation directory:
 
 ``` bash
-cd /path/to/your/StrainCascade
+cd $(dirname $(which straincascade))/..
 ```
 
 Then you can run the following command to generate the batch submission:
