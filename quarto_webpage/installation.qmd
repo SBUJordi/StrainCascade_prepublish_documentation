@@ -59,10 +59,10 @@ Navigate to the new StrainCascade directory
 cd StrainCascade
 ```
 
-Make the StrainCascade scripts executable
+Make all scripts (including the ones in subdirectories) of StrainCascade executable
 
 ``` bash
-chmod +x scripts/*
+find scripts/ -type f -exec chmod +x {} \;
 ```
 
 Execute the installation script, which pulls Apptainer images and downloads databases.
@@ -113,10 +113,10 @@ Navigate to the new StrainCascade directory
 cd StrainCascade
 ```
 
-Make the StrainCascade scripts executable
+Make all scripts (including the ones in subdirectories) of StrainCascade executable
 
 ``` bash
-chmod +x scripts/*
+find scripts/ -type f -exec chmod +x {} \;
 ```
 
 Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.
