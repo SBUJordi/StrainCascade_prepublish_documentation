@@ -165,8 +165,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#system-requirements" id="toc-system-requirements" class="nav-link active" data-scroll-target="#system-requirements"><span class="header-section-number">1</span> System requirements</a></li>
   <li><a href="#installation-dependencies" id="toc-installation-dependencies" class="nav-link" data-scroll-target="#installation-dependencies"><span class="header-section-number">2</span> Installation dependencies</a></li>
-  <li><a href="#default-installation" id="toc-default-installation" class="nav-link" data-scroll-target="#default-installation"><span class="header-section-number">3</span> Default installation</a></li>
-  <li><a href="#custom-installation-selective-apptainer-imagesdatabases" id="toc-custom-installation-selective-apptainer-imagesdatabases" class="nav-link" data-scroll-target="#custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">4</span> Custom Installation (Selective Apptainer images/databases)</a></li>
+  <li><a href="#default-installation-interactive" id="toc-default-installation-interactive" class="nav-link" data-scroll-target="#default-installation-interactive"><span class="header-section-number">3</span> Default installation (interactive)</a></li>
+  <li><a href="#default-installation-sbatch" id="toc-default-installation-sbatch" class="nav-link" data-scroll-target="#default-installation-sbatch"><span class="header-section-number">4</span> Default installation (SBATCH)</a></li>
+  <li><a href="#custom-installation-selective-apptainer-imagesdatabases" id="toc-custom-installation-selective-apptainer-imagesdatabases" class="nav-link" data-scroll-target="#custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">5</span> Custom Installation (selective Apptainer images/databases)</a></li>
+  <li><a href="#updating-existing-straingcascade-software-instllation" id="toc-updating-existing-straingcascade-software-instllation" class="nav-link" data-scroll-target="#updating-existing-straingcascade-software-instllation"><span class="header-section-number">6</span> Updating existing StraingCascade software instllation</a></li>
   </ul>
 </nav>
     </div>
@@ -196,8 +198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="system-requirements"><span class="header-section-number">1</span> System requirements</h2>
 <ul>
 <li><p>Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)</p></li>
-<li><p>~ 500GB disk space software and reference databases</p></li>
-<li><p>For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 10GB of RAM allocated per core. However, less will also work.</p></li>
+<li><p>~ 580GB disk space software and reference databases</p></li>
+<li><p>For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM).</p></li>
 </ul>
 </section>
 <section id="installation-dependencies" class="level2" data-number="2">
@@ -205,36 +207,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://git-scm.com/">Git</a></p></li>
 <li><p><a href="https://apptainer.org/">Apptainer</a></p></li>
+<li><p>(Optional: <a href="https://docs.anaconda.com/miniconda/">Conda/Miniconda</a>)</p></li>
 <li><p>All further software dependencies (listed in detail under <a href="./dependencies.html">Dependencies</a>) are bundled in Apptainer images, which are automatically downloaded and used when installing/running StrainCascade. This approach enhances:</p>
 <ol type="1">
 <li><p>Ease of use: Simplified installation and execution process</p></li>
 <li><p>Portability: Consistent performance across different computing environments</p></li>
 <li><p>Reproducibility: Ensures identical software environments for all users</p></li>
-<li><p>Version control: Precise management of software versions and their interactions Isolation: Minimises conflicts with existing system libraries</p></li>
+<li><p>Version control: Precise management of software versions and their interactions</p></li>
+<li><p>Isolation: Minimises conflicts with existing system libraries</p></li>
 </ol></li>
 </ul>
 </section>
-<section id="default-installation" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="default-installation"><span class="header-section-number">3</span> Default installation</h2>
-<p>Clone the StrainCascade GitHub repository</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Move to the StrainCascade directory</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="default-installation-interactive" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="default-installation-interactive"><span class="header-section-number">3</span> Default installation (interactive)</h2>
+<p>For standard installation with the command-line interface, follow these steps:</p>
+<p>Optional - Create and activate a conda environment for StrainCascade:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> StrainCascade_env</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate StrainCascade_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Optional - Navigate to your StrainCascade conda environment directory:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$CONDA_PREFIX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clone the StrainCascade GitHub repository to your current working directory</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Navigate to the new StrainCascade directory</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Make the StrainCascade scripts executable</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x scripts/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Execute the installation script (pulls Apptainer images and downloads databases)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/StrainCascade_installation.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x scripts/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execute the installation script, which pulls Apptainer images and downloads databases.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/StrainCascade_installation.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will be prompted by an interactive installation guide if you have enough disk space.</p>
 <pre class="console"><code>Running StrainCascade installation...
 Sufficient disk space available: XXXGB
 Apptainer is installed.
 Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
-<p>For a complete installation from scratch, choose <code>y</code> when asked:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The installation process will take a while.</p>
+<p>For a complete installation from scratch, choose <code>y</code> when asked.</p>
+<p>The installation may take between 12 hours to over a day, depending on your system and network speed.</p>
 </section>
-<section id="custom-installation-selective-apptainer-imagesdatabases" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">4</span> Custom Installation (Selective Apptainer images/databases)</h2>
+<section id="default-installation-sbatch" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="default-installation-sbatch"><span class="header-section-number">4</span> Default installation (SBATCH)</h2>
+<p>If you are using an institutional HPC (High-Performance Computing) account with SLURM (Simple Linux Utility for Resource Management), you can install StrainCascade using SBATCH. Follow these steps:</p>
+<p>Optional - Create and activate a conda environment for StrainCascade:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> StrainCascade_env</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate StrainCascade_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Optional - Navigate to your StrainCascade conda environment directory:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$CONDA_PREFIX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clone the StrainCascade GitHub repository to your current working directory</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Navigate to the new StrainCascade directory</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make the StrainCascade scripts executable</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x scripts/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh</span> your_partition your.email@example.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace <code>your_partition</code> with your HPC’s SLURM partition name and <code>your.email@example.com</code> with your email address for job notifications.</p>
+<p>The installation will be handled by SLURM and may take between 12 hours to over a day, depending on your system and network speed. You will receive an email notification when the installation is complete or if it fails.</p>
+</section>
+<section id="custom-installation-selective-apptainer-imagesdatabases" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">5</span> Custom Installation (selective Apptainer images/databases)</h2>
 <p>In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose <code>n</code> when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.</p>
 <p>This option is particularly useful in scenarios where:</p>
 <ul>
@@ -245,7 +273,16 @@ Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
 <p>When opting for a selective installation, the script will guide you through each component, providing a brief description and asking whether you wish to install it. This process ensures that only the necessary components are downloaded, giving you full control over the installation.</p>
 <p>Example Prompt:</p>
 <pre class="console"><code>Do you want to install checkm2_db? (y/n)</code></pre>
-<p>By answering y or n to each prompt, you can customise the installation to your specific needs.</p>
+<p>By answering <code>y</code> or <code>n</code> to each prompt, you can customise the installation to your specific needs.</p>
+</section>
+<section id="updating-existing-straingcascade-software-instllation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="updating-existing-straingcascade-software-instllation"><span class="header-section-number">6</span> Updating existing StraingCascade software instllation</h2>
+<p>If you have StrainCascade already installed but would like to update the software (scripts) without reinstalling Apptainer images or databeses, you can choose <code>n</code> when prompted for a full installation. You will then be prompted if you want to update the StrainCascade software: <code>Do you want to update the StrainCascade software (scripts)? (y/n)</code>. If you choose <code>y</code> all current StrainCascade scripts will be updated.</p>
+<p>This option is particularly useful in scenarios where:</p>
+<ul>
+<li>There are improvements or bug fixes in the current release of StrainCascade software available that you want to use.</li>
+</ul>
+<p><strong>Note:</strong> This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.</p>
 
 
 </section>

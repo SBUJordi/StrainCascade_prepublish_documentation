@@ -163,7 +163,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link active" data-scroll-target="#quick-start"><span class="header-section-number">1</span> Quick start</a></li>
+  <li><a href="#quick-start-from-sequencing-files" id="toc-quick-start-from-sequencing-files" class="nav-link active" data-scroll-target="#quick-start-from-sequencing-files"><span class="header-section-number">1</span> Quick start (from sequencing files)</a></li>
+  <li><a href="#quick-start-from-assembly-files" id="toc-quick-start-from-assembly-files" class="nav-link" data-scroll-target="#quick-start-from-assembly-files"><span class="header-section-number">2</span> Quick start (from assembly files)</a></li>
+  <li><a href="#high-throughput-sbatch-set-up-from-sequencing-files" id="toc-high-throughput-sbatch-set-up-from-sequencing-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-sequencing-files"><span class="header-section-number">3</span> High throughput SBATCH set-up (from sequencing files)</a></li>
+  <li><a href="#high-throughput-sbatch-set-up-from-assembly-files" id="toc-high-throughput-sbatch-set-up-from-assembly-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-assembly-files"><span class="header-section-number">4</span> High throughput SBATCH set-up (from assembly files)</a></li>
   </ul>
 </nav>
     </div>
@@ -204,24 +207,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   -l  locus_tag           Specify your own locus tag for genome annotation (default: automatically generated); must contain between 3 and 12 alphanumeric uppercase characters and start with a letter
   -h                      Show detailed help message
   -v                      Show version information</code></pre>
-<section id="quick-start" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">1</span> Quick start</h2>
+<section id="quick-start-from-sequencing-files" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="quick-start-from-sequencing-files"><span class="header-section-number">1</span> Quick start (from sequencing files)</h2>
 <p>To quickly run StrainCascade on a sequencing file from the command line interface, use the following minimal command:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-i</span> /path/to/your/input_file.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-i</span> /path/to/your/input_file</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Note:</strong> Running StrainCascade is resource-intensive and will overwhelm standard desktop or laptop computers. For optimal performance, we strongly recommend using a high-performance computing (HPC) environment.</p>
-<p>For efficient execution, it’s recommended to submit the pipeline as a SLURM <code>sbatch</code> job. Below is an example of a basic SLURM submission script. Be sure to adjust the <code>--partition</code> parameter to match your environment:</p>
+<p>For efficient execution, it’s recommended to submit pipeline jobs as a SLURM SBATCH job. Below is an example of a basic SLURM submission script. Be sure to adjust the <code>--partition</code> parameter to match your environment:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash #SBATCH </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--job-name=</span><span class="st">"StrainCascade"</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--job-name="StrainCascade" </span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=StrainCascade\_%j.out </span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=32 </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=320G # 10GB per CPU for 32 CPUs </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=3G #96GB total </span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=your_partition</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the job</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-i</span> /path/to/your/input_file.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-i</span> /path/to/your/input_file <span class="at">-t</span> 32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To submit the script to your SLURM scheduler, use:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> your_script.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> your_SBATCH_script.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="quick-start-from-assembly-files" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="quick-start-from-assembly-files"><span class="header-section-number">2</span> Quick start (from assembly files)</h2>
+<p>To quickly run StrainCascade on an already assembled genome from the command line interface, use the following minimal command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-a</span> /path/to/your/input_file</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Note:</strong> Running StrainCascade is resource-intensive and will overwhelm standard desktop or laptop computers. For optimal performance, we strongly recommend using a high-performance computing (HPC) environment.</p>
+<p>For efficient execution, it’s recommended to submit pipeline jobs as a SLURM SBATCH job. Below is an example of a basic SLURM submission script. Be sure to adjust the <code>--partition</code> parameter to match your environment:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash #SBATCH </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--job-name="StrainCascade" </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=StrainCascade\_%j.out </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=32 </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=3G #96GB total </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition=your_partition</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the job</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-a</span> /path/to/your/input_file <span class="at">-t</span> 32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To submit the script to your SLURM scheduler, use:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> your_SBATCH_script.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="high-throughput-sbatch-set-up-from-sequencing-files" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="high-throughput-sbatch-set-up-from-sequencing-files"><span class="header-section-number">3</span> High throughput SBATCH set-up (from sequencing files)</h2>
+<p>For processing multiple sequencing files in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here’s an example of how to set this up:</p>
+<p>As with the initial installation, you first need to navigate to the StrainCascade directory:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/your/StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can run the following command to generate the batch submission:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> /path/to/input/directory your_partition <span class="pp">[</span><span class="ss">your.email@example.com</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">/path/to/file_list.txt</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Further explanation:</strong></p>
+<pre class="console"><code>Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh &lt;input_directory&gt; &lt;partition&gt; [email] [file_list]
+  &lt;input_directory&gt;: Directory containing input files
+  &lt;partition&gt;: SLURM partition to use for the job
+  [email]: Email address for notifications (optional)
+  [file_list]: Optional file with specific filenames to process (one filename per line)
+  -----------------------------------------------------------------
+  Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt</code></pre>
+<ul>
+<li>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</li>
+<li>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</li>
+</ul>
+</section>
+<section id="high-throughput-sbatch-set-up-from-assembly-files" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="high-throughput-sbatch-set-up-from-assembly-files"><span class="header-section-number">4</span> High throughput SBATCH set-up (from assembly files)</h2>
+<p>For processing multiple already assembled genomes in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here’s an example of how to set this up:</p>
+<p>As with the initial installation, you first need to navigate to the StrainCascade directory:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /path/to/your/StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can run the following command to generate the batch submission:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> /path/to/input/directory your_partition <span class="pp">[</span><span class="ss">your.email@example.com</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">/path/to/file_list.txt</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Further explanation:</strong></p>
+<pre class="console"><code>Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh &lt;input_directory&gt; &lt;partition&gt; [email] [file_list]
+  &lt;input_directory&gt;: Directory containing input files
+  &lt;partition&gt;: SLURM partition to use for the job
+  [email]: Email address for notifications (optional)
+  [file_list]: Optional file with specific filenames to process (one filename per line)
+  -----------------------------------------------------------------
+  Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt</code></pre>
+<ul>
+<li>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</li>
+<li>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</li>
+</ul>
 
 
 </section>
