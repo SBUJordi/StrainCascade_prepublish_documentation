@@ -129,7 +129,7 @@ Replace `your_partition` with your HPC's SLURM partition name and `your.email@ex
 
 The installation will be handled by SLURM and may take between 12 hours to over a day, depending on your system and network speed. You will receive an email notification when the installation is complete or if it fails.
 
-## Custom Installation (Selective Apptainer images/databases)
+## Custom Installation (selective Apptainer images/databases)
 
 In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose `n` when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.
 
@@ -150,3 +150,13 @@ Do you want to install checkm2_db? (y/n)
 ```
 
 By answering `y` or `n` to each prompt, you can customise the installation to your specific needs.
+
+## Updating existing StraingCascade software instllation
+
+If you have StrainCascade already installed but would like to update the software (scripts) without reinstalling Apptainer images or databeses, you can choose `n` when prompted for a full installation. You will then be prompted if you want to update the StrainCascade software: `Do you want to update the StrainCascade software (scripts)? (y/n)`. If you choose `y` all current StrainCascade scripts will be updated.
+
+This option is particularly useful in scenarios where:
+
+-   There are improvements or bug fixes in the current release of StrainCascade software available that you want to use.
+
+**Note:** This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.
