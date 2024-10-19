@@ -115,8 +115,8 @@ Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_f
   Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt
   ```
 
--   By default the script will generate a submission script for each file in the input directory and submit them to the SLURM scheduler. Optionally, you can provide a text file limiting execution to specific samples files in the input directory.
--   By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: `straincascade -i "$input_file" -r main -t 32` (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.
+-   By default the script will generate a submission script for each file in the input directory with one of the following endings: `.bam`, `fastq`, `fastq.gz`, `.fasta`, `fna` or `.fa`. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (`file_list`) limiting execution to specific files in the input directory.
+-   By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: `straincascade -a "$input_file" -r main -t 32` (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.
 
 
 
@@ -147,7 +147,7 @@ Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_fil
   Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt
   ```
 
--   By default the script will generate a submission script for each file in the input directory and submit them to the SLURM scheduler. Optionally, you can provide a text file limiting execution to specific samples files in the input directory.
+-   By default the script will generate a submission script for each file in the input directory with one of the following endings: `.fasta`, `fna` or `.fa`. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (`file_list`) limiting execution to specific files in the input directory.
 -   By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: `straincascade -a "$input_file" -r main -t 32` (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.
 
 
