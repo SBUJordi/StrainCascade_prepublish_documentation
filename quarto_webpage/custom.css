@@ -114,16 +114,18 @@ div.sourceCode.bash,
   border: 1px solid #444 !important;
   border-radius: 4px !important;
   padding: 1em !important;
-  overflow-x: auto !important;
+  overflow: visible !important; /* Change from overflow-x: auto to overflow: visible */
+  position: relative !important;
 }
 
-pre.sourceCode.bash code,
-div.sourceCode.bash code,
-.cell-output pre:not([class]) code {
+pre.sourceCode.bash > code,
+div.sourceCode.bash > code,
+.cell-output pre:not([class]) > code {
+  display: block !important;
+  overflow-x: auto !important;
   color: var(--bash-code-color) !important;
-  background-color: var(--bash-code-bg) !important;
-  display: inline-block !important;
-  min-width: 100% !important;
+  padding: 0.5em !important;
+  padding-right: 2.5em !important; /* Make space for the button */
 }
 
 /* Ensure all text within bash code blocks is the correct color */
@@ -131,6 +133,30 @@ pre.sourceCode.bash *,
 div.sourceCode.bash *,
 .cell-output pre:not([class]) * {
   color: var(--bash-code-color) !important;
+}
+
+/* Style for copy button in bash code blocks */
+pre.sourceCode.bash .copy-button,
+div.sourceCode.bash .copy-button,
+.cell-output pre:not([class]) .copy-button {
+  position: absolute !important;
+  top: 5px !important;
+  right: 5px !important;
+  background-color: var(--copy-button-color) !important;
+  opacity: 0.8 !important;
+  border: none !important;
+  border-radius: 3px !important;
+  color: white !important;
+  padding: 2px 5px !important;
+  font-size: 0.8em !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+}
+
+pre.sourceCode.bash .copy-button:hover,
+div.sourceCode.bash .copy-button:hover,
+.cell-output pre:not([class]) .copy-button:hover {
+  opacity: 1 !important;
 }
 
 /* Fix for horizontal scrolling in code blocks */
