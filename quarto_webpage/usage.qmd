@@ -101,7 +101,7 @@ cd $(dirname $(which straincascade))/..
 Then you can run the following command to generate the batch submission:
 
 ``` bash
-.scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh /path/to/input/directory your_partition [your.email@example.com] [/path/to/file_list.txt]
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh /path/to/input/directory your_partition [your.email@example.com] [/path/to/file_list.txt]
 ```
 
 **Further explanation:**
@@ -133,7 +133,7 @@ cd $(dirname $(which straincascade))/..
 Then you can run the following command to generate the batch submission:
 
 ``` bash
-.scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh /path/to/input/directory your_partition [your.email@example.com] [/path/to/file_list.txt]
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh /path/to/input/directory your_partition [your.email@example.com] [/path/to/file_list.txt]
 ```
 
 **Further explanation:**
