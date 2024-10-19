@@ -6,9 +6,9 @@ title: "Installation"
 
 -   Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)
 
--   \~ 500GB disk space software and reference databases
+-   \~ 580GB disk space software and reference databases
 
--   For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 10GB of RAM allocated per core. However, less will also work.
+-   For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM).
 
 ## Installation dependencies
 
@@ -26,25 +26,22 @@ title: "Installation"
 
     3.  Reproducibility: Ensures identical software environments for all users
 
-    4.  Version control: Precise management of software versions and their interactions Isolation: Minimises conflicts with existing system libraries
+    4.  Version control: Precise management of software versions and their interactions 
+    
+    5.  Isolation: Minimises conflicts with existing system libraries
 
 ## Default installation (interactive)
 
 For standard installation with the command-line interface, follow these steps:
 
-Optional: Create a conda environment for StrainCascade
+Optional - Create and activate a conda environment for StrainCascade:
 
 ``` bash
 conda create -n StrainCascade_env
-```
-
-Optional: Activate the conda environment
-
-``` bash
 conda activate StrainCascade_env
 ```
 
-Optional: Move to your StrainCascade conda environment directory (StrainCascade_env)
+Optional - Navigate to your StrainCascade conda environment directory:
 
 ``` bash
 cd $CONDA_PREFIX
@@ -56,7 +53,7 @@ Clone the StrainCascade GitHub repository to your current working directory
 git clone https://github.com/SBUJordi/StrainCascade.git
 ```
 
-Move to the StrainCascade directory
+Navigate to the new StrainCascade directory
 
 ``` bash
 cd StrainCascade
@@ -68,7 +65,7 @@ Make the StrainCascade scripts executable
 chmod +x scripts/*
 ```
 
-Execute the installation script (pulls Apptainer images and downloads databases)
+Execute the installation script, which pulls Apptainer images and downloads databases.
 
 ``` bash
 ./scripts/StrainCascade_installation.sh
@@ -83,13 +80,9 @@ Apptainer is installed.
 Do you want to do a full installation of StrainCascade? (y/n)
 ```
 
-For a complete installation from scratch, choose `y` when asked:
+For a complete installation from scratch, choose `y` when asked.
 
-``` bash
-y
-```
-
-The installation process will take a while depending on your setting (12h - >1d).
+The installation may take between 12 hours to over a day, depending on your system and network speed.
 
 ## Default installation (SBATCH)
 
@@ -97,14 +90,12 @@ If you are using an institutional HPC (High-Performance Computing) account with 
 
 Optional - Create and activate a conda environment for StrainCascade:
 
-
 ``` bash
 conda create -n StrainCascade_env
 conda activate StrainCascade_env
 ```
 
 Optional - Navigate to your StrainCascade conda environment directory:
-
 
 ``` bash
 cd $CONDA_PREFIX
@@ -158,4 +149,4 @@ Example Prompt:
 Do you want to install checkm2_db? (y/n)
 ```
 
-By answering y or n to each prompt, you can customise the installation to your specific needs.
+By answering `y` or `n` to each prompt, you can customise the installation to your specific needs.
