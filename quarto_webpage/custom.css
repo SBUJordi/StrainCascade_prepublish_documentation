@@ -1,0 +1,42 @@
+/* Define custom properties */
+:root {
+  --main-navbar-color: #336392;
+  --main-font: 'Source Sans Pro', sans-serif;
+}
+
+/* Apply custom font to all elements */
+body, .navbar, .nav, .dataTables_wrapper, .dataTable, .table, h1, h2, h3, h4, h5, h6 {
+  font-family: var(--main-font) !important;
+}
+
+/* Customize main navbar */
+.navbar {
+  background-color: var(--main-navbar-color) !important;
+  border-color: var(--main-navbar-color) !important;
+}
+
+/* Ensure text is readable on custom backgrounds */
+.navbar-brand,
+.navbar-nav > li > a {
+  color: white !important;
+}
+
+/* Set border-top-color to custom color for active tabs */
+.nav-tabs > li.active > a {
+  border-top-color: var(--main-navbar-color) !important;
+}
+
+/* Customize table styles */
+.table {
+  font-family: var(--main-font) !important;
+}
+
+/* Customize headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--main-font) !important;
+}
+
+/* Specifically target the titles we want to change */
+.chart-title, .chart-stage h3 {
+  font-family: var(--main-font) !important;
+}

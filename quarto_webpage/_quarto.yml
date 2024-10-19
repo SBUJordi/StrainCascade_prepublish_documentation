@@ -4,6 +4,8 @@ project:
 website:
   title: "StrainCascade"
   navbar:
+    background: "#336392"
+    foreground: "white"
     left:
       - href: installation.qmd
         text: Installation
@@ -24,7 +26,9 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme:
+      - flatly
+      - custom.scss
     css: 
       - styles.css
       - custom.css
@@ -35,6 +39,6 @@ format:
     highlight-style: github
     code-fold: true
     code-tools: false
-    mainfont: Helvetica
+    mainfont: "Source Sans Pro"
 
 editor: visual
