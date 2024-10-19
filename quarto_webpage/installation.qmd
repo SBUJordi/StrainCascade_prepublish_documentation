@@ -162,4 +162,4 @@ This option is particularly useful in scenarios where:
 **Note:** This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.
 
 ## Caveats
--   The installation process writes the necessary paths to the PATH variable (via your shell configuration files and/or conda variable). Generally StrainCascade should be able to handle multiple installations in different conda environments. However, if you encounter issues, please check your PATH variable and make sure that the correct StrainCascade installation is used.
+-   The installation process writes the necessary paths to the PATH variable (via your shell configuration files and/or conda variable). Generally StrainCascade should be able to handle multiple installations in different conda environments. However, if you encounter issues, please check your `$PATH` variable and make sure that the correct StrainCascade installation is used.
