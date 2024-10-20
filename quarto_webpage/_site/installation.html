@@ -169,6 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#default-installation-sbatch" id="toc-default-installation-sbatch" class="nav-link" data-scroll-target="#default-installation-sbatch"><span class="header-section-number">4</span> Default installation (SBATCH)</a></li>
   <li><a href="#custom-installation-selective-apptainer-imagesdatabases" id="toc-custom-installation-selective-apptainer-imagesdatabases" class="nav-link" data-scroll-target="#custom-installation-selective-apptainer-imagesdatabases"><span class="header-section-number">5</span> Custom Installation (selective Apptainer images/databases)</a></li>
   <li><a href="#updating-existing-straingcascade-software-instllation" id="toc-updating-existing-straingcascade-software-instllation" class="nav-link" data-scroll-target="#updating-existing-straingcascade-software-instllation"><span class="header-section-number">6</span> Updating existing StraingCascade software instllation</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">7</span> Caveats</a></li>
   </ul>
 </nav>
     </div>
@@ -230,8 +231,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Navigate to the new StrainCascade directory</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Make the StrainCascade scripts executable</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x scripts/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make all scripts (including the ones in subdirectories) of StrainCascade executable</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> scripts/ <span class="at">-type</span> f <span class="at">-exec</span> chmod +x {} <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Execute the installation script, which pulls Apptainer images and downloads databases.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/StrainCascade_installation.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will be prompted by an interactive installation guide if you have enough disk space.</p>
@@ -254,8 +255,8 @@ Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/SBUJordi/StrainCascade.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Navigate to the new StrainCascade directory</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> StrainCascade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Make the StrainCascade scripts executable</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x scripts/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make all scripts (including the ones in subdirectories) of StrainCascade executable</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> scripts/ <span class="at">-type</span> f <span class="at">-exec</span> chmod +x {} <span class="dt">\;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh</span> your_partition your.email@example.com</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Replace <code>your_partition</code> with your HPC’s SLURM partition name and <code>your.email@example.com</code> with your email address for job notifications.</p>
@@ -283,6 +284,14 @@ Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
 <li>There are improvements or bug fixes in the current release of StrainCascade software available that you want to use.</li>
 </ul>
 <p><strong>Note:</strong> This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.</p>
+</section>
+<section id="caveats" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="caveats"><span class="header-section-number">7</span> Caveats</h2>
+<ul>
+<li><p>The installation process updates your <code>PATH</code> variable by modifying shell configuration files and/or the conda environment. StrainCascade generally supports multiple installations across different conda environments. If you experience issues, verify that your <code>$PATH</code> points to the correct StrainCascade installation.</p></li>
+<li><p>When re-installing Apptainer images after a StrainCascade update, newer versions (indicated by a higher :v#) of a former image may be downloaded, while the former versions will remain. StrainCascade will prioritize the first matching image, which may not always be the latest version. While this usually doesn’t cause errors, for optimal functionality, it’s recommended to check the <code>apptainer_images</code> directory and remove outdated versions after re-installations. You can find the <code>apptainer_images</code> directory in the StrainCascade installation directory and easily navigate to it with the following command (activate the conda environment first if necessary):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/../apptainer_images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 
 
 </section>

@@ -255,3 +255,18 @@ p code {
   white-space: pre !important;
   word-break: keep-all !important;
 }
+
+/* New styles to ensure section header numbers are black */
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+  color: black !important;
+}
+
+/* Ensure the entire header (including numbers) is black by default */
+h1, h2, h3, h4, h5, h6 {
+  color: black !important;
+}
+
+/* If there are any specific header styles that change the color, override them */
+.header-section-number {
+  color: black !important;
+}
