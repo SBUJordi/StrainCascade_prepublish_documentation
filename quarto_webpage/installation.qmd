@@ -129,7 +129,7 @@ Replace `your_partition` with your HPC's SLURM partition name and `your.email@ex
 
 The installation will be handled by SLURM and may take between 12 hours to over a day, depending on your system and network speed. You will receive an email notification when the installation is complete or if it fails.
 
-## Custom Installation (selective Apptainer images/databases)
+## Custom Installation
 
 In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose `n` when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.
 
