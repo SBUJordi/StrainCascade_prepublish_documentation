@@ -122,14 +122,14 @@ find scripts/ -type f -exec chmod +x {} \;
 Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.
 
 ``` bash
-./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh your_partition your.email@example.com
+sbatch ./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh your_partition your.email@example.com
 ```
 
 Replace `your_partition` with your HPC's SLURM partition name and `your.email@example.com` with your email address for job notifications.
 
 The installation will be handled by SLURM and may take between 12 hours to over a day, depending on your system and network speed. You will receive an email notification when the installation is complete or if it fails.
 
-## Custom Installation
+## Custom installation
 
 In the event of an error, disruption, or if you prefer to install only specific Apptainer images or databases, you can choose `n` when prompted for a full installation. This will allow you to sequentially decide for each individual Apptainer image or database whether you want to download and install it.
 
