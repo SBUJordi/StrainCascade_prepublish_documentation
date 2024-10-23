@@ -122,7 +122,7 @@ find scripts/ -type f -exec chmod +x {} \;
 Execute the SBATCH installation script, which pulls Apptainer images and downloads databases.
 
 ``` bash
-sbatch ./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh your_partition your.email@example.com
+./scripts/SBATCH_scripts/StrainCascade_SBATCH_full_installation.sh your_partition your.email@example.com
 ```
 
 Replace `your_partition` with your HPC's SLURM partition name and `your.email@example.com` with your email address for job notifications.
