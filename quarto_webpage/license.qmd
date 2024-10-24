@@ -230,8 +230,8 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 -   **License:** Oxford Nanopore Technologies PLC. Public License Version 1.0 / MPL-2.0 
 
--   **Tool URL:** [bioconda medaka](https://anaconda.org/bioconda/medaka)
--   **Tool URL:** [git medaka](https://github.com/nanoporetech/medaka)
+-   **Tool URL:** [Bioconda medaka](https://anaconda.org/bioconda/medaka)
+-   **Tool URL:** [GitHub medaka](https://github.com/nanoporetech/medaka)
 
 -   **Information added:** October 14, 2024
 
@@ -310,6 +310,53 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 <summary>Click to expand</summary>
 
 {{< include "_includes/checkm2_license.qmd" >}}
+
+</details>    
+
+### GTDB-Tk taxonomy
+
+-   **Tool Name:** GTDB-Tk
+
+-   **StrainCascade module:** SC14 and SC15
+
+-   **StrainCascade script:** StrainCascade_GTDB-Tk_taxonomy.sh and StrainCascade_GTDB-Tk_de_novo_tree.sh
+
+-   **License:** GNU GPL v3
+
+-   **Tool URL:** [GTDB](https://gtdb.ecogenomic.org/)
+-   **Tool URL:** [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)
+
+-   **Information added:** October 24, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/gtdbtk_license.qmd" >}}
+
+</details>
+
+### Bakta annotation
+
+-   **Tool Name:** Bakta
+
+-   **StrainCascade module:** SC16
+
+-   **StrainCascade script:** StrainCascade_Bakta_annotation.sh
+
+-   **License:** GNU GPL v3
+
+-   **Tool URL:** [Bakta](https://github.com/oschwengers/bakta?tab=readme-ov-file)
+
+-   **Information added:** October 24, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/bakta_license.qmd" >}}
 
 </details> 
 
