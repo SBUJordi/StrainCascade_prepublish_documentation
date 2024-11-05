@@ -188,3 +188,9 @@ Updates all required databases to the newest versions. This will remove all curr
 ``` bash
 straincascade --update-databases
 ```
+
+
+
+## CAVEATS
+
+-   **Conda environment and PATH variable in SBATCH jobs:** When submitting `sbatch` jobs, it is important to note that your Conda environment will not remain active. If you have multiple installations of StrainCascade, each installation will add its respective paths to the `PATH` variable. Only by activating the correct Conda environment in your `sbatch` script (not implement in above examples) will you ensure that the appropriate paths are used, allowing StrainCascade to function as expected. Without this activation, `sbatch` jobs may inadvertently use incorrect paths, potentially leading to errors or unexpected behaviour.
