@@ -22,12 +22,12 @@ straincascade options:
   -f yes/no         Force overwrite of existing files (default: yes)
   -l STRING         Locus tag (default: automatic)
 
-Update Options:
+Update options:
   -us, --update-software    Update StrainCascade software to the latest version
   -uai, --update-images     Update all Apptainer images
   -udb, --update-databases  Update all databases
 
-General Options:
+General options:
   -h, --help                Show a more detailed help message
   -v, --version             Show version information
 ```
