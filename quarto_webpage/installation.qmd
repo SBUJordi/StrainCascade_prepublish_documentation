@@ -161,7 +161,7 @@ This option is particularly useful in scenarios where:
 
 **Note:** This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.
 
-## Caveats
+## CAVEATS
 -   The installation process updates your `PATH` variable by modifying shell configuration files and/or the conda environment. StrainCascade generally supports multiple installations across different conda environments. If you experience issues, verify that your `$PATH` points to the correct StrainCascade installation.
 
 -   When re-installing Apptainer images after a StrainCascade update, newer versions (indicated by a higher :v#) of a former image may be downloaded, while the former versions will remain. StrainCascade will prioritize the first matching image, which may not always be the latest version. While this usually doesn't cause errors, for optimal functionality, it's recommended to check the `apptainer_images` directory and remove outdated versions after re-installations. You can find the `apptainer_images` directory in the StrainCascade installation directory and easily navigate to it with the following command (activate the conda environment first if necessary):
