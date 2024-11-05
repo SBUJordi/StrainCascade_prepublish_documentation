@@ -183,7 +183,7 @@ straincascade --update-images
 ```
 
 ### Update databases: 
-Updates all required databases to the newest versions. This will remove all currently installed databases.
+Updates all required databases to the newest versions. This will remove all currently installed databases. CAVEAT: The database installation may take between 12 hours to over a day, depending on your system and network speed. 
 
 ``` bash
 straincascade --update-databases
