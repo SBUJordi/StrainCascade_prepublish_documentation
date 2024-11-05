@@ -168,21 +168,21 @@ Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_fil
 
 To keep your StrainCascade installation current, you can use the following options to update the software, Apptainer images, and databases. 
 
-### Update software: 
+### Update software 
 Updates StrainCascade software to the latest version. This will remove all currently installed software.
 
 ``` bash
 straincascade --update-software
 ```
 
-### Update Apptainer images: 
+### Update Apptainer images 
 Downloads the all the latest Apptainer images required for StrainCascade. This will remove all currently installed Apptainer images.
 
 ``` bash
 straincascade --update-images
 ```
 
-### Update databases: 
+### Update databases 
 Updates all required databases to the newest versions. This will remove all currently installed databases. CAVEAT: The database installation may take between 12 hours to over a day, depending on your system and network speed. 
 
 ``` bash
