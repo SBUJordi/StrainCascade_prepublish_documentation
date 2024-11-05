@@ -3,21 +3,33 @@ title: "Usage"
 ---
 
 ``` console
-Usage: straincascade (-i input | -a assembly) [-o output_directory] [-s seq_type] [-t threads] [-r result_type] [-e execution_mode | -b bundle] [-f force_overwrite] [-d databases_directory] [-l locus_tag] [-h] [-v]
-  -i  input               Input file or directory containing sequencing files (mutually exclusive with -a); valid file extensions include: .fasta, .fna, .fa, .fastq, .fastq.gz, and .bam
-  -a  assembly            Input assembly file or directory containing assembly files (mutually exclusive with -i); valid file extensions include: .fasta, .fna, .fa
-  -o  output_directory    Output directory (default: current working directory)
-  -s  seq_type            Sequence type (default: pacbio-hifi). Options are: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
-  -t  threads             Number of threads (default: 32)
-  -e  execution_mode      Execution mode (mutually exclusive with -b). Options are: minimal | efficient | standard | comprehensive | custom
-                          For custom mode, indicate the modules to run; e.g., "custom:SC1,SC2,SC3"
-  -b  bundle              Bundle of modules to run (mutually exclusive with -e). Options are: assembly | annotation | functional | phage
-  -r  result_type         Result type (default: main). Options are: all, main, R
-  -f  force_overwrite     Force overwrite existing results (default: yes). Options are: yes | no
-  -d  databases_directory Path to databases directory (default: StrainCascade/databases)
-  -l  locus_tag           Specify your own locus tag for genome annotation (default: automatically generated); must contain between 3 and 12 alphanumeric uppercase characters and start with a letter
-  -h                      Show detailed help message
-  -v                      Show version information
+Error: Either -i or -a must be provided.
+Usage: straincascade [OPTIONS]
+
+straincascade options:
+  -i FILE/DIR       Input reads file or directory (mutually exclusive with -a, default: empty)
+  -a FILE/DIR       Input assembly file or directory (mutually exclusive with -i, default: empty)
+  -o DIR            Output directory (default: current directory)
+  -s TYPE           Sequencing type (default: pacbio-hifi)
+                    Options: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
+  -t INT            Number of threads (default: 32)
+  -e MODE           Execution mode (mutually exclusive with -b, default: empty)
+                    Options: minimal | efficient | standard | comprehensive | custom:modules
+  -b BUNDLE         Bundle name (mutually exclusive with -e, default: empty)
+                    Options: assembly | annotation | functional | phage
+  -r TYPE           Result type (default: main)
+                    Options: all | main | R
+  -f yes/no         Force overwrite of existing files (default: yes)
+  -l STRING         Locus tag (default: automatic)
+
+Update Options:
+  -us, --update-software    Update StrainCascade software to the latest version
+  -uai, --update-images     Update all Apptainer images
+  -udb, --update-databases  Update all databases
+
+General Options:
+  -h, --help                Show a more detailed help message
+  -v, --version             Show version information
 ```
 
 
@@ -151,3 +163,28 @@ Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_fil
 -   By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: `straincascade -a "$input_file" -r main -t 32` (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.
 
 
+
+## Updating StrainCascade
+
+To keep your StrainCascade installation current, you can use the following options to update the software, Apptainer images, and databases. 
+
+### Update software: 
+Updates StrainCascade software to the latest version. This will remove all currently installed software.
+
+``` bash
+straincascade --update-software
+```
+
+### Update Apptainer images: 
+Downloads the all the latest Apptainer images required for StrainCascade. This will remove all currently installed Apptainer images.
+
+``` bash
+straincascade --update-images
+```
+
+### Update databases: 
+Updates all required databases to the newest versions. This will remove all currently installed databases.
+
+``` bash
+straincascade --update-databases
+```
