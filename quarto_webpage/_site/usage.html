@@ -167,6 +167,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quick-start-from-assembly-files" id="toc-quick-start-from-assembly-files" class="nav-link" data-scroll-target="#quick-start-from-assembly-files"><span class="header-section-number">2</span> Quick start (from assembly files)</a></li>
   <li><a href="#high-throughput-sbatch-set-up-from-sequencing-files" id="toc-high-throughput-sbatch-set-up-from-sequencing-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-sequencing-files"><span class="header-section-number">3</span> High throughput SBATCH set-up (from sequencing files)</a></li>
   <li><a href="#high-throughput-sbatch-set-up-from-assembly-files" id="toc-high-throughput-sbatch-set-up-from-assembly-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-assembly-files"><span class="header-section-number">4</span> High throughput SBATCH set-up (from assembly files)</a></li>
+  <li><a href="#updating-straincascade" id="toc-updating-straincascade" class="nav-link" data-scroll-target="#updating-straincascade"><span class="header-section-number">5</span> Updating StrainCascade</a>
+  <ul class="collapse">
+  <li><a href="#update-software" id="toc-update-software" class="nav-link" data-scroll-target="#update-software"><span class="header-section-number">5.1</span> Update software</a></li>
+  <li><a href="#update-apptainer-images" id="toc-update-apptainer-images" class="nav-link" data-scroll-target="#update-apptainer-images"><span class="header-section-number">5.2</span> Update Apptainer images</a></li>
+  <li><a href="#update-databases" id="toc-update-databases" class="nav-link" data-scroll-target="#update-databases"><span class="header-section-number">5.3</span> Update databases</a></li>
+  </ul></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">6</span> CAVEATS</a></li>
   </ul>
 </nav>
     </div>
@@ -192,21 +199,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<pre class="console"><code>Usage: straincascade (-i input | -a assembly) [-o output_directory] [-s seq_type] [-t threads] [-r result_type] [-e execution_mode | -b bundle] [-f force_overwrite] [-d databases_directory] [-l locus_tag] [-h] [-v]
-  -i  input               Input file or directory containing sequencing files (mutually exclusive with -a); valid file extensions include: .fasta, .fna, .fa, .fastq, .fastq.gz, and .bam
-  -a  assembly            Input assembly file or directory containing assembly files (mutually exclusive with -i); valid file extensions include: .fasta, .fna, .fa
-  -o  output_directory    Output directory (default: current working directory)
-  -s  seq_type            Sequence type (default: pacbio-hifi). Options are: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
-  -t  threads             Number of threads (default: 32)
-  -e  execution_mode      Execution mode (mutually exclusive with -b). Options are: minimal | efficient | standard | comprehensive | custom
-                          For custom mode, indicate the modules to run; e.g., "custom:SC1,SC2,SC3"
-  -b  bundle              Bundle of modules to run (mutually exclusive with -e). Options are: assembly | annotation | functional | phage
-  -r  result_type         Result type (default: main). Options are: all, main, R
-  -f  force_overwrite     Force overwrite existing results (default: yes). Options are: yes | no
-  -d  databases_directory Path to databases directory (default: StrainCascade/databases)
-  -l  locus_tag           Specify your own locus tag for genome annotation (default: automatically generated); must contain between 3 and 12 alphanumeric uppercase characters and start with a letter
-  -h                      Show detailed help message
-  -v                      Show version information</code></pre>
+<pre class="console"><code>Error: Either -i or -a must be provided.
+Usage: straincascade [OPTIONS]
+
+straincascade options:
+  -i FILE/DIR       Input reads file or directory (mutually exclusive with -a, default: empty)
+  -a FILE/DIR       Input assembly file or directory (mutually exclusive with -i, default: empty)
+  -o DIR            Output directory (default: current directory)
+  -s TYPE           Sequencing type (default: pacbio-hifi)
+                    Options: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
+  -t INT            Number of threads (default: 32)
+  -e MODE           Execution mode (mutually exclusive with -b, default: empty)
+                    Options: minimal | efficient | standard | comprehensive | custom:modules
+  -b BUNDLE         Bundle name (mutually exclusive with -e, default: empty)
+                    Options: assembly | annotation | functional | phage
+  -r TYPE           Result type (default: main)
+                    Options: all | main | R
+  -f yes/no         Force overwrite of existing files (default: yes)
+  -l STRING         Locus tag (default: automatic)
+
+Update options:
+  -us, --update-software    Update StrainCascade software to the latest version
+  -uai, --update-images     Update all Apptainer images
+  -udb, --update-databases  Update all databases
+
+General options:
+  -h, --help                Show a more detailed help message
+  -v, --version             Show version information</code></pre>
 <section id="quick-start-from-sequencing-files" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="quick-start-from-sequencing-files"><span class="header-section-number">1</span> Quick start (from sequencing files)</h2>
 <p>To quickly run StrainCascade on a sequencing file from the command line interface, use the following minimal command:</p>
@@ -283,6 +302,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</li>
 <li>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</li>
+</ul>
+</section>
+<section id="updating-straincascade" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="updating-straincascade"><span class="header-section-number">5</span> Updating StrainCascade</h2>
+<p>To keep your StrainCascade installation current, you can use the following options to update the software, Apptainer images, and databases.</p>
+<section id="update-software" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="update-software"><span class="header-section-number">5.1</span> Update software</h3>
+<p>Updates StrainCascade software to the latest version. This will remove all currently installed software.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-software</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update-apptainer-images" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="update-apptainer-images"><span class="header-section-number">5.2</span> Update Apptainer images</h3>
+<p>Downloads the all the latest Apptainer images required for StrainCascade. This will remove all currently installed Apptainer images.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update-databases" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="update-databases"><span class="header-section-number">5.3</span> Update databases</h3>
+<p>Updates all required databases to the newest versions. This will remove all currently installed databases. CAVEAT: The database installation may take between 12 hours to over a day, depending on your system and network speed.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-databases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="caveats" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="caveats"><span class="header-section-number">6</span> CAVEATS</h2>
+<ul>
+<li><strong>Conda environment and PATH variable in SBATCH jobs:</strong> When submitting <code>sbatch</code> jobs, it is important to note that your Conda environment will not remain active. If you have multiple installations of StrainCascade, each installation will add its respective paths to the <code>PATH</code> variable. Only by activating the correct Conda environment in your <code>sbatch</code> script (not implement in above examples) will you ensure that the appropriate paths are used, allowing StrainCascade to function as expected. Without this activation, <code>sbatch</code> jobs may inadvertently use incorrect paths, potentially leading to errors or unexpected behaviour.</li>
 </ul>
 
 
