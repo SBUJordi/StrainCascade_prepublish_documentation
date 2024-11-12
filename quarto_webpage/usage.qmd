@@ -110,7 +110,7 @@ First, navigate to the StrainCascade installation directory:
 cd $(dirname $(which straincascade))/..
 ```
 
-Then you can generate a batch submission of multiple files as illustrated exemplarily below:
+Then you can generate batch submissions for multiple files as illustrated exemplarily below:
 
 ``` bash
 # For minimal usage with required arguments only
@@ -171,7 +171,7 @@ First, navigate to the StrainCascade installation directory:
 cd $(dirname $(which straincascade))/..
 ```
 
-Then you can generate a batch submission of multiple files as illustrated exemplarily below:
+Then you can generate batch submissions for multiple files as illustrated exemplarily below:
 
 ``` bash
 # For minimal usage with required arguments only

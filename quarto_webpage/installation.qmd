@@ -65,13 +65,24 @@ Make all scripts (including the ones in subdirectories) of StrainCascade executa
 find scripts/ -type f -exec chmod +x {} \;
 ```
 
-Execute the installation script, which pulls Apptainer images and downloads databases.
+Execute the installation script, which pulls Apptainer images and downloads databases. At this point you have three insttallation options:
 
 ``` bash
-./scripts/StrainCascade_installation.sh
+# For interactive installation with normal verbosity (recommended default)
+./StrainCascade_installation.sh
 ```
 
-You will be prompted by an interactive installation guide if you have enough disk space.
+``` bash
+# For quiet full installation
+STRAINCASCADE_VERBOSITY=0 ./StrainCascade_installation.sh --full
+```
+
+``` bash
+# For verbose interactive installation
+STRAINCASCADE_VERBOSITY=2 ./StrainCascade_installation.sh
+```
+
+If you choose the default interactive installation, you will be prompted by an interactive installation guide if you have enough disk space.
 
 ```         
 Running StrainCascade installation...
