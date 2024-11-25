@@ -13,7 +13,7 @@ straincascade options:
   -s TYPE           Sequencing type (default: pacbio-hifi)
                     Options: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
   -t INT            Number of threads (default: 32)
-  -e MODE           Execution mode (mutually exclusive with -b, default: empty)
+  -e MODE           Execution mode (mutually exclusive with -b, default: standard)
                     Options: minimal | efficient | standard | comprehensive | custom:modules
   -b BUNDLE         Bundle name (mutually exclusive with -e, default: empty)
                     Options: assembly | annotation | functional | phage
@@ -114,34 +114,34 @@ Then you can generate batch submissions for multiple files as illustrated exempl
 
 ``` bash
 # For minimal usage with required arguments only
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input -p my_partition
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input_directory -p my_partition
 
 # With sequencing type
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input -p my_partition -s pacbio-raw
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input_directory -p my_partition -s pacbio-raw
 
 # With all optional parameters
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input -p my_partition -s pacbio-raw -e user@example.com -f file_list.txt
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input_directory -p my_partition -s pacbio-raw -n user@example.com -f file_list.txt
 
 # Parameters can be in any order
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -s pacbio-hifi -i /path/to/input -e user@example.com -p my_partition
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -s pacbio-hifi -i /path/to/input_directory -n user@example.com -p my_partition
 ```
 
 **Further explanation:**
 ``` console
 ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh
 Error: Input directory (-i) and partition (-p) are required arguments.
-Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i <input_directory> -p <partition> [-s <sequencing_type>] [-e <email>] [-f <file_list>]
+Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i <input_directory> -p <partition> [-s <sequencing_type>] [-n <notification>] [-f <file_list>]
 Required arguments:
   -i <input_directory>: Directory containing input files
   -p <partition>: SLURM partition to use for the job
 Optional arguments:
   -s <sequencing_type>: Sequencing type (default: pacbio-hifi)
                         Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
-  -e <email>: Email address for notifications
+  -n <notification>: Email address for notifications
   -f <file_list>: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
-  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt
   ```
 
 -   By default the script will generate a submission script for each file in the input directory with one of the following endings: `.bam`, `fastq`, `fastq.gz`, `.fasta`, `fna` or `.fa`. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (`file_list`) limiting execution to specific files in the input directory.
@@ -175,32 +175,32 @@ Then you can generate batch submissions for multiple files as illustrated exempl
 
 ``` bash
 # For minimal usage with required arguments only
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input -p my_partition
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input_directory -p my_partition
 
 # With sequencing type
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input -p my_partition -s pacbio-raw
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input_directory -p my_partition -s pacbio-raw
 
 # With all optional parameters
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input -p my_partition -s pacbio-raw -e user@example.com -f file_list.txt
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input_directory -p my_partition -s pacbio-raw -n user@example.com -f file_list.txt
 
 # Parameters can be in any order
-./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -s pacbio-hifi -i /path/to/input -e user@example.com -p my_partition
+./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -s pacbio-hifi -i /path/to/input_directory -n user@example.com -p my_partition
 ```
 
 **Further explanation:**
 ``` console
-Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i <input_directory> -p <partition> [-s <sequencing_type>] [-e <email>] [-f <file_list>]
+Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i <input_directory> -p <partition> [-s <sequencing_type>] [-n <notification>] [-f <file_list>]
 Required arguments:
   -i <input_directory>: Directory containing input files
   -p <partition>: SLURM partition to use for the job
 Optional arguments:
   -s <sequencing_type>: Sequencing type (default: pacbio-hifi)
                         Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
-  -e <email>: Email address for notifications
+  -n <notification>: Email address for notifications
   -f <file_list>: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
-  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt
   ```
 
 -   By default the script will generate a submission script for each file in the input directory with one of the following endings: `.fasta`, `fna` or `.fa`. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (`file_list`) limiting execution to specific files in the input directory.

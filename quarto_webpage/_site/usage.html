@@ -209,7 +209,7 @@ straincascade options:
   -s TYPE           Sequencing type (default: pacbio-hifi)
                     Options: pacbio-raw | pacbio-corr | pacbio-hifi | nano-raw | nano-corr | nano-hq
   -t INT            Number of threads (default: 32)
-  -e MODE           Execution mode (mutually exclusive with -b, default: empty)
+  -e MODE           Execution mode (mutually exclusive with -b, default: standard)
                     Options: minimal | efficient | standard | comprehensive | custom:modules
   -b BUNDLE         Bundle name (mutually exclusive with -e, default: empty)
                     Options: assembly | annotation | functional | phage
@@ -269,39 +269,91 @@ General options:
 <p>For processing multiple sequencing files in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here’s an example of how to set this up:</p>
 <p>First, navigate to the StrainCascade installation directory:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then you can run the following command to generate the batch submission:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> /path/to/input/directory your_partition <span class="pp">[</span><span class="ss">your.email@example.com</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">/path/to/file_list.txt</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can generate batch submissions for multiple files as illustrated exemplarily below:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For minimal usage with required arguments only</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With sequencing type</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># With all optional parameters</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-e</span> user@example.com <span class="at">-f</span> file_list.txt</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters can be in any order</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input <span class="at">-e</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Further explanation:</strong></p>
-<pre class="console"><code>Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh &lt;input_directory&gt; &lt;partition&gt; [email] [file_list]
-  &lt;input_directory&gt;: Directory containing input files
-  &lt;partition&gt;: SLURM partition to use for the job
-  [email]: Email address for notifications (optional)
-  [file_list]: Optional file with specific filenames to process (one filename per line)
+<pre class="console"><code>./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh
+Error: Input directory (-i) and partition (-p) are required arguments.
+Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-e &lt;email&gt;] [-f &lt;file_list&gt;]
+Required arguments:
+  -i &lt;input_directory&gt;: Directory containing input files
+  -p &lt;partition&gt;: SLURM partition to use for the job
+Optional arguments:
+  -s &lt;sequencing_type&gt;: Sequencing type (default: pacbio-hifi)
+                        Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
+  -e &lt;email&gt;: Email address for notifications
+  -f &lt;file_list&gt;: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
-  Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt</code></pre>
+  Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt</code></pre>
 <ul>
-<li>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</li>
-<li>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</li>
+<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
+<li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>
+<li><p>The script will submit the individual SLURM jobs with job configurations as shown below. Make sure that these are appropriate for your system (e.g., number of CPUs, memory allocation, time limits etc.).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--job-name=straincascade_${base_name}</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#--output=${REPORT_DIR}/StrainCascade_${base_name}_%j.out</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#--cpus-per-task=32</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#--mem-per-cpu=3G</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#--time=48:00:00</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#--partition=$PARTITION</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#--mail-user=$EMAIL</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#--mail-type=end,fail</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="high-throughput-sbatch-set-up-from-assembly-files" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="high-throughput-sbatch-set-up-from-assembly-files"><span class="header-section-number">4</span> High throughput SBATCH set-up (from assembly files)</h2>
 <p>For processing multiple already assembled genomes in a high-throughput manner, you can use a provided submission script that automates the creation of individual SLURM jobs for each input file contained in a specified input directory. Here’s an example of how to set this up:</p>
 <p>First, navigate to the StrainCascade installation directory:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then you can run the following command to generate the batch submission:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> /path/to/input/directory your_partition <span class="pp">[</span><span class="ss">your.email@example.com</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">/path/to/file_list.txt</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can generate batch submissions for multiple files as illustrated exemplarily below:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For minimal usage with required arguments only</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With sequencing type</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># With all optional parameters</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-e</span> user@example.com <span class="at">-f</span> file_list.txt</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters can be in any order</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input <span class="at">-e</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Further explanation:</strong></p>
-<pre class="console"><code>Usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh &lt;input_directory&gt; &lt;partition&gt; [email] [file_list]
-  &lt;input_directory&gt;: Directory containing input files
-  &lt;partition&gt;: SLURM partition to use for the job
-  [email]: Email address for notifications (optional)
-  [file_list]: Optional file with specific filenames to process (one filename per line)
+<pre class="console"><code>Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-e &lt;email&gt;] [-f &lt;file_list&gt;]
+Required arguments:
+  -i &lt;input_directory&gt;: Directory containing input files
+  -p &lt;partition&gt;: SLURM partition to use for the job
+Optional arguments:
+  -s &lt;sequencing_type&gt;: Sequencing type (default: pacbio-hifi)
+                        Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
+  -e &lt;email&gt;: Email address for notifications
+  -f &lt;file_list&gt;: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
-  Example usage: .scritps/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh /path/to/input/directory your_partition your.email@example.com /path/to/file_list.txt</code></pre>
+  Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt</code></pre>
 <ul>
-<li>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</li>
-<li>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</li>
+<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
+<li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>
+<li><p>The script will submit the individual SLURM jobs with job configurations as shown below. Make sure that these are appropriate for your system (e.g., number of CPUs, memory allocation, time limits etc.).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--job-name=straincascade_${base_name}</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#--output=${REPORT_DIR}/StrainCascade_${base_name}_%j.out</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#--cpus-per-task=32</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#--mem-per-cpu=3G</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#--time=48:00:00</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#--partition=$PARTITION</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#--mail-user=$EMAIL</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#--mail-type=end,fail</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="updating-straincascade" class="level2" data-number="5">
@@ -310,17 +362,17 @@ General options:
 <section id="update-software" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="update-software"><span class="header-section-number">5.1</span> Update software</h3>
 <p>Updates StrainCascade software to the latest version. This will remove all currently installed software.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-software</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-software</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="update-apptainer-images" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="update-apptainer-images"><span class="header-section-number">5.2</span> Update Apptainer images</h3>
 <p>Downloads the all the latest Apptainer images required for StrainCascade. This will remove all currently installed Apptainer images.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="update-databases" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="update-databases"><span class="header-section-number">5.3</span> Update databases</h3>
 <p>Updates all required databases to the newest versions. This will remove all currently installed databases. CAVEAT: The database installation may take between 12 hours to over a day, depending on your system and network speed.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-databases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-databases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="caveats" class="level2" data-number="6">
