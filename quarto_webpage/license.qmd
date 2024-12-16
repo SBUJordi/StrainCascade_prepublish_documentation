@@ -451,3 +451,164 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 {{< include "_includes/amrfinderplus_license.qmd" >}}
 
 </details> 
+
+### ResFinder antimicrobial resistance identification
+
+-   **Tool Name:** ResFinder
+
+-   **StrainCascade module:** SC21
+
+-   **StrainCascade script:** StrainCascade_ResFinder_antimicrobial_resistance_identification.sh
+
+-   **License:** Apache License 2.0
+
+-   **Tool URL:** [ResFinder](https://github.com/genomicepidemiology/resfinder)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/resfinder_license.qmd" >}}
+
+</details> 
+
+### dbCAN3 CAZymes identification
+
+-   **Tool Name:** dbCAN3
+
+-   **StrainCascade module:** SC22
+
+-   **StrainCascade script:** StrainCascade_dbCAN3_CAZymes_identification.sh
+
+-   **License:**  GNU GPL v3
+
+-   **Tool URL:** [dbCAN3](https://github.com/linnabrown/run_dbcan)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/dbcan3_license.qmd" >}}
+
+</details> 
+
+### IslandPath genomic islands identification
+
+-   **Tool Name:** IslandPath
+
+-   **StrainCascade module:** SC23
+
+-   **StrainCascade script:** StrainCascade_IslandPath_genomic_islands_identification.sh
+
+-   **License:**  GNU GPL v3
+
+-   **Tool URL:** [IslandPath](https://github.com/brinkmanlab/islandpath)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/islandpath_license.qmd" >}}
+
+</details> 
+
+### VirSorter2 viral sequences identification
+
+-   **Tool Name:** VirSorter2
+
+-   **StrainCascade module:** SC24
+
+-   **StrainCascade script:** StrainCascade_VirSorter2_phage_identification.sh
+
+-   **License:**  GNU GPL v2
+
+-   **Tool URL:** [VirSorter2](https://github.com/jiarong/VirSorter2)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/virsorter2_license.qmd" >}}
+
+</details>  
+
+### DeepVirFinder viral sequences identification
+
+-   **Tool Name:** DeepVirFinder
+
+-   **StrainCascade module:** SC25
+
+-   **StrainCascade script:** StrainCascade_DeepVirFinder_phage_identification.sh
+
+-   **License:**  USC-RL v1
+
+-   **Tool URL:** [DeepVirFinder](https://github.com/jessieren/DeepVirFinder)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/deepvirfinder_license.qmd" >}}
+
+</details>   
+
+### CrisprCasFinder CRISPR-Cas system identification
+
+-   **Tool Name:** CRISPRCasFinder
+
+-   **StrainCascade module:** SC26
+
+-   **StrainCascade script:** StrainCascade_CRISPRCasFinder_identification.sh
+
+-   **License:**  GNU GPL v3
+
+-   **Tool URL:** [CRISPRCasFinder](https://github.com/dcouvin/CRISPRCasFinder)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/crisprcasfinder_license.qmd" >}}
+
+</details>   
+
+### ISEScan insertion sequence (IS) elements identification
+
+-   **Tool Name:** ISEScan
+
+-   **StrainCascade module:** SC27
+
+-   **StrainCascade script:** StrainCascade_ISEScan_IS_elements_identification.sh
+
+-   **License:**  Apache License 2.0
+
+-   **Tool URL:** [ISEScan](https://github.com/xiezhq/ISEScan)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/isescan_license.qmd" >}}
+
+</details> 
