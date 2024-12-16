@@ -406,7 +406,7 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 </details> 
 
-### PlasmidFinder
+### PlasmidFinder plasmid identification
 
 -   **Tool Name:** PlasmidFinder
 
@@ -428,4 +428,26 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 {{< include "_includes/plasmidfinder_license.qmd" >}}
 
 </details> 
-Apache License Version 2.0
+
+### AMRFinderPlus antimicrobial resistance identification
+
+-   **Tool Name:** AMRFinderPlus
+
+-   **StrainCascade module:** SC20
+
+-   **StrainCascade script:** StrainCascade_AMRFinderPlus_antimicrobial_resistance_identification.sh
+
+-   **License:** Public domain notice
+
+-   **Tool URL:** [AMRFinderPlus](https://github.com/ncbi/amr?tab=License-1-ov-file)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/amrfinderplus_license.qmd" >}}
+
+</details> 
