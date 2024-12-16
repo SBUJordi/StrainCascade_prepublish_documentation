@@ -159,6 +159,29 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 </details> 
 
+### QUAST assembly assessment
+
+-   **Tool Name:** QUAST
+
+-   **StrainCascade module:** SC6, SC8 and SC10
+
+-   **StrainCascade script:** StrainCascade_assembly_evaluation1.sh, StrainCascade_assembly_evaluation2.sh and StrainCascade_assembly_evaluation3.sh
+
+-   **License:** GNU GPL v2
+
+-   **Tool URL:** [QUAST](https://github.com/ablab/quast)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/quast_license.qmd" >}}
+
+</details> 
+
 ### MAC2.0 Assembly Merging
 
 -   **Tool Name:** MAC2.0
