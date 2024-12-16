@@ -360,3 +360,72 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 </details> 
 
+### Prokka annotation
+
+-   **Tool Name:** Prokka
+
+-   **StrainCascade module:** SC17
+
+-   **StrainCascade script:** StrainCascade_Prokka_annotation.sh
+
+-   **License:** GNU GPL v3
+
+-   **Tool URL:** [Prokka](https://github.com/tseemann/prokka)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/prokka_license.qmd" >}}
+
+</details> 
+
+### MicrobeAnnotator annotation
+
+-   **Tool Name:** MicrobeAnnotator
+
+-   **StrainCascade module:** SC18
+
+-   **StrainCascade script:** StrainCascade_MicrobeAnnotator_annotation.sh
+
+-   **License:** Artistic License 2.0
+
+-   **Tool URL:** [MicrobeAnnotator](https://github.com/cruizperez/MicrobeAnnotator)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/microbeannotator_license.qmd" >}}
+
+</details> 
+
+### PlasmidFinder
+
+-   **Tool Name:** PlasmidFinder
+
+-   **StrainCascade module:** SC19
+
+-   **StrainCascade script:** StrainCascade_PlasmidFinder_identification.sh
+
+-   **License:** Apache License 2.0
+
+-   **Tool URL:** [PlasmidFinder](https://github.com/kcri-tz/plasmidfinder?tab=readme-ov-file)
+
+-   **Information added:** December 16, 2024
+
+-   **Full license text:**
+
+<details>
+<summary>Click to expand</summary>
+
+{{< include "_includes/plasmidfinder_license.qmd" >}}
+
+</details> 
+Apache License Version 2.0
