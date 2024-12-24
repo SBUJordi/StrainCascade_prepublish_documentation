@@ -300,7 +300,7 @@ By using the Software, Licensee agrees to be bound by the terms and conditions o
 
 -   **License:** BSD 3-Clause-like 
 
--   **Tool URL:** [NGMLR](https://github.com/philres/ngmlr)
+-   **Tool URL:** [BBMap](https://sourceforge.net/projects/bbmap/)
 
 -   **Information added:** October 17, 2024
 
