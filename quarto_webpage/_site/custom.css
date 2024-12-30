@@ -37,11 +37,11 @@ body, .navbar, .nav, .dataTables_wrapper, .dataTable, .table, h1, h2, h3, h4, h5
 
 /* Even distribution of navbar items */
 .navbar-nav-scroll {
-  width: 80% !important;
+  width: 100% !important;
 }
 
 .navbar-nav {
-  width: 80% !important;
+  width: 100% !important;
   display: flex !important;
   justify-content: space-between !important;
 }
