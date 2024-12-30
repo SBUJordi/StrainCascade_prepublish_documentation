@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Usage – StrainCascade</title>
+<title>Usage</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,8 +113,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">StrainCascade</span>
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./_includes/logo.svg" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -271,31 +271,31 @@ General options:
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then you can generate batch submissions for multiple files as illustrated exemplarily below:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For minimal usage with required arguments only</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With sequencing type</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># With all optional parameters</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-e</span> user@example.com <span class="at">-f</span> file_list.txt</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-n</span> user@example.com <span class="at">-f</span> file_list.txt</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters can be in any order</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input <span class="at">-e</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input_directory <span class="at">-n</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Further explanation:</strong></p>
 <pre class="console"><code>./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh
 Error: Input directory (-i) and partition (-p) are required arguments.
-Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-e &lt;email&gt;] [-f &lt;file_list&gt;]
+Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-n &lt;notification&gt;] [-f &lt;file_list&gt;]
 Required arguments:
   -i &lt;input_directory&gt;: Directory containing input files
   -p &lt;partition&gt;: SLURM partition to use for the job
 Optional arguments:
   -s &lt;sequencing_type&gt;: Sequencing type (default: pacbio-hifi)
                         Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
-  -e &lt;email&gt;: Email address for notifications
+  -n &lt;notification&gt;: Email address for notifications
   -f &lt;file_list&gt;: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
-  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt</code></pre>
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt</code></pre>
 <ul>
 <li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
 <li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>
@@ -318,29 +318,29 @@ Optional arguments:
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then you can generate batch submissions for multiple files as illustrated exemplarily below:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For minimal usage with required arguments only</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With sequencing type</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># With all optional parameters</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-e</span> user@example.com <span class="at">-f</span> file_list.txt</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-i</span> /path/to/input_directory <span class="at">-p</span> my_partition <span class="at">-s</span> pacbio-raw <span class="at">-n</span> user@example.com <span class="at">-f</span> file_list.txt</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters can be in any order</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input <span class="at">-e</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input_directory <span class="at">-n</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Further explanation:</strong></p>
-<pre class="console"><code>Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-e &lt;email&gt;] [-f &lt;file_list&gt;]
+<pre class="console"><code>Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-n &lt;notification&gt;] [-f &lt;file_list&gt;]
 Required arguments:
   -i &lt;input_directory&gt;: Directory containing input files
   -p &lt;partition&gt;: SLURM partition to use for the job
 Optional arguments:
   -s &lt;sequencing_type&gt;: Sequencing type (default: pacbio-hifi)
                         Valid options: pacbio-raw, pacbio-corr, pacbio-hifi, nano-raw, nano-corr, nano-hq
-  -e &lt;email&gt;: Email address for notifications
+  -n &lt;notification&gt;: Email address for notifications
   -f &lt;file_list&gt;: File with specific filenames to process (one filename per line)
   -----------------------------------------------------------------
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
-  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -e your.email@example.com -f file_list.txt</code></pre>
+  Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt</code></pre>
 <ul>
 <li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
 <li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>

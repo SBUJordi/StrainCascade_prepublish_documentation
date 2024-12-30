@@ -21,6 +21,36 @@ body, .navbar, .nav, .dataTables_wrapper, .dataTable, .table, h1, h2, h3, h4, h5
   border-color: var(--main-navbar-color) !important;
 }
 
+/* Logo sizing in navbar */
+.navbar-brand {
+  height: 75px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 5px 10px !important;
+  margin-right: 50px !important; 
+}
+
+.navbar-brand img {
+  max-height: 75px !important;
+  width: auto !important;
+}
+
+/* Even distribution of navbar items */
+.navbar-nav-scroll {
+  width: 80% !important;
+}
+
+.navbar-nav {
+  width: 80% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.navbar-nav > li {
+  flex: 1 !important;
+  text-align: center !important;
+}
+
 /* Ensure text is white on custom backgrounds and remove underline */
 .navbar-brand,
 .navbar-nav > li > a {
