@@ -1,3 +1,1 @@
----
-title: "Welcome to StrainCascade"
----
+![](_includes//straincascade_logo_colour.png)
