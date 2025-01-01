@@ -188,7 +188,6 @@ straincascade -udb
 
 These update options are particularly useful when you want to incorporate improvements, bug fixes, or new releases specific to each component without performing a complete reinstallation. For example, you might want to update just the databases when new reference data becomes available, or update the software scripts to access the latest features while keeping your existing images and databases.
 
-
 **Important Note:** These individual update mechanisms are designed for minor version updates and patches. They do not replace the need for a complete reinstallation when major version releases introduce significant new features that affect multiple components of StrainCascade. In such cases, please refer to the full installation instructions for your specific version.
 
 ## CAVEATS

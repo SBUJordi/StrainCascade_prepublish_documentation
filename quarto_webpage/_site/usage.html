@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./_includes/logo.svg" alt="" class="navbar-logo">
+    <img src="./_includes/straincascade_logo_white.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -167,12 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quick-start-from-assembly-files" id="toc-quick-start-from-assembly-files" class="nav-link" data-scroll-target="#quick-start-from-assembly-files"><span class="header-section-number">2</span> Quick start (from assembly files)</a></li>
   <li><a href="#high-throughput-sbatch-set-up-from-sequencing-files" id="toc-high-throughput-sbatch-set-up-from-sequencing-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-sequencing-files"><span class="header-section-number">3</span> High throughput SBATCH set-up (from sequencing files)</a></li>
   <li><a href="#high-throughput-sbatch-set-up-from-assembly-files" id="toc-high-throughput-sbatch-set-up-from-assembly-files" class="nav-link" data-scroll-target="#high-throughput-sbatch-set-up-from-assembly-files"><span class="header-section-number">4</span> High throughput SBATCH set-up (from assembly files)</a></li>
-  <li><a href="#updating-straincascade" id="toc-updating-straincascade" class="nav-link" data-scroll-target="#updating-straincascade"><span class="header-section-number">5</span> Updating StrainCascade</a>
-  <ul class="collapse">
-  <li><a href="#update-software" id="toc-update-software" class="nav-link" data-scroll-target="#update-software"><span class="header-section-number">5.1</span> Update software</a></li>
-  <li><a href="#update-apptainer-images" id="toc-update-apptainer-images" class="nav-link" data-scroll-target="#update-apptainer-images"><span class="header-section-number">5.2</span> Update Apptainer images</a></li>
-  <li><a href="#update-databases" id="toc-update-databases" class="nav-link" data-scroll-target="#update-databases"><span class="header-section-number">5.3</span> Update databases</a></li>
-  </ul></li>
+  <li><a href="#updating-straincascade" id="toc-updating-straincascade" class="nav-link" data-scroll-target="#updating-straincascade"><span class="header-section-number">5</span> Updating StrainCascade</a></li>
   <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">6</span> CAVEATS</a></li>
   </ul>
 </nav>
@@ -199,8 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<pre class="console"><code>Error: Either -i or -a must be provided.
-Usage: straincascade [OPTIONS]
+<pre class="console"><code>Usage: straincascade [OPTIONS]
 
 straincascade options:
   -i FILE/DIR       Input reads file or directory (mutually exclusive with -a, default: empty)
@@ -217,6 +211,8 @@ straincascade options:
                     Options: all | main | R
   -f yes/no         Force overwrite of existing files (default: yes)
   -l STRING         Locus tag (default: automatic)
+  --deterministic | --heuristic Choose deterministic to optimise for reproducibility"
+                                at cost of computation time (default: heuristic)"
 
 Update options:
   -us, --update-software    Update StrainCascade software to the latest version
@@ -283,7 +279,6 @@ General options:
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh</span> <span class="at">-s</span> pacbio-hifi <span class="at">-i</span> /path/to/input_directory <span class="at">-n</span> user@example.com <span class="at">-p</span> my_partition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Further explanation:</strong></p>
 <pre class="console"><code>./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh
-Error: Input directory (-i) and partition (-p) are required arguments.
 Usage: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i &lt;input_directory&gt; -p &lt;partition&gt; [-s &lt;sequencing_type&gt;] [-n &lt;notification&gt;] [-f &lt;file_list&gt;]
 Required arguments:
   -i &lt;input_directory&gt;: Directory containing input files
@@ -297,7 +292,7 @@ Optional arguments:
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
   Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_sequencing_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt</code></pre>
 <ul>
-<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
+<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.bam</code>, <code>fastq</code>, <code>fastq.gz</code>, <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submitted to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
 <li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>
 <li><p>The script will submit the individual SLURM jobs with job configurations as shown below. Make sure that these are appropriate for your system (e.g., number of CPUs, memory allocation, time limits etc.).</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -342,7 +337,7 @@ Optional arguments:
   Example usage 1: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-raw
   Example usage 2: ./scripts/SBATCH_scripts/StrainCascade_high_throughput_SBATCH_assembly_files.sh -i /path/to/input/directory -p your_partition -s pacbio-hifi -n your.email@example.com -f file_list.txt</code></pre>
 <ul>
-<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submit to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
+<li><p>By default the script will generate a submission script for each file in the input directory with one of the following endings: <code>.fasta</code>, <code>fna</code> or <code>.fa</code>. The files will be submitted to the SLURM scheduler. Optionally, you can provide a text file (<code>file_list</code>) limiting execution to specific files in the input directory.</p></li>
 <li><p>By default the script will execute a standard run of StainCascade for each of the samples as SBATCH job: <code>straincascade -a "$input_file" -r main -t 32</code> (using 96GB of RAM). If you are experienced with StrainCascade and using SBATCH and want to customize the execution, you can modify the script to your needs.</p></li>
 <li><p>The script will submit the individual SLURM jobs with job configurations as shown below. Make sure that these are appropriate for your system (e.g., number of CPUs, memory allocation, time limits etc.).</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -358,22 +353,7 @@ Optional arguments:
 </section>
 <section id="updating-straincascade" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="updating-straincascade"><span class="header-section-number">5</span> Updating StrainCascade</h2>
-<p>To keep your StrainCascade installation current, you can use the following options to update the software, Apptainer images, and databases.</p>
-<section id="update-software" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="update-software"><span class="header-section-number">5.1</span> Update software</h3>
-<p>Updates StrainCascade software to the latest version. This will remove all currently installed software.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-software</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="update-apptainer-images" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="update-apptainer-images"><span class="header-section-number">5.2</span> Update Apptainer images</h3>
-<p>Downloads the all the latest Apptainer images required for StrainCascade. This will remove all currently installed Apptainer images.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="update-databases" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="update-databases"><span class="header-section-number">5.3</span> Update databases</h3>
-<p>Updates all required databases to the newest versions. This will remove all currently installed databases. CAVEAT: The database installation may take between 12 hours to over a day, depending on your system and network speed.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">--update-databases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<p>To keep your StrainCascade installation current, you can freshly <a href="./installation.html#default-installation-interactive">install new major releases</a> or <a href="./installation.html#updating-your-existing-straincascade-installation">update existing components</a>. For instructions on installing new releases and updating StrainCascade components, please refer to [Updating your existing StrainCascade installation].</p>
 </section>
 <section id="caveats" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="caveats"><span class="header-section-number">6</span> CAVEATS</h2>
