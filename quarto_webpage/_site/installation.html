@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#default-installation-interactive" id="toc-default-installation-interactive" class="nav-link" data-scroll-target="#default-installation-interactive"><span class="header-section-number">3</span> Default installation (interactive)</a></li>
   <li><a href="#default-installation-sbatch" id="toc-default-installation-sbatch" class="nav-link" data-scroll-target="#default-installation-sbatch"><span class="header-section-number">4</span> Default installation (SBATCH)</a></li>
   <li><a href="#custom-installation" id="toc-custom-installation" class="nav-link" data-scroll-target="#custom-installation"><span class="header-section-number">5</span> Custom installation</a></li>
-  <li><a href="#updating-existing-straingcascade-software-instllation" id="toc-updating-existing-straingcascade-software-instllation" class="nav-link" data-scroll-target="#updating-existing-straingcascade-software-instllation"><span class="header-section-number">6</span> Updating existing StraingCascade software instllation</a></li>
+  <li><a href="#updating-your-existing-straincascade-installation" id="toc-updating-your-existing-straincascade-installation" class="nav-link" data-scroll-target="#updating-your-existing-straincascade-installation"><span class="header-section-number">6</span> Updating your existing StrainCascade installation</a></li>
   <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="header-section-number">7</span> CAVEATS</a></li>
   </ul>
 </nav>
@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)</p></li>
 <li><p>~ 580GB disk space software and reference databases</p></li>
-<li><p>For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM).</p></li>
+<li><p>For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM). If you run SC15 for de novo tree generation more than 100GB of RAM might be required.</p></li>
 </ul>
 </section>
 <section id="installation-dependencies" class="level2" data-number="2">
@@ -208,6 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><a href="https://git-scm.com/">Git</a></p></li>
 <li><p><a href="https://apptainer.org/">Apptainer</a></p></li>
+<li><p>(Recommended: <a href="https://tiswww.case.edu/php/chet/bash/bashtop.html">Bash</a> as command-line shell)</p></li>
 <li><p>(Optional: <a href="https://docs.anaconda.com/miniconda/">Conda/Miniconda</a>)</p></li>
 <li><p>All further software dependencies (listed in detail under <a href="./dependencies.html">Dependencies</a>) are bundled in Apptainer images, which are automatically downloaded and used when installing/running StrainCascade. This approach enhances:</p>
 <ol type="1">
@@ -281,21 +282,24 @@ Do you want to do a full installation of StrainCascade? (y/n)</code></pre>
 <pre class="console"><code>Do you want to install checkm2_db? (y/n)</code></pre>
 <p>By answering <code>y</code> or <code>n</code> to each prompt, you can customise the installation to your specific needs.</p>
 </section>
-<section id="updating-existing-straingcascade-software-instllation" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="updating-existing-straingcascade-software-instllation"><span class="header-section-number">6</span> Updating existing StraingCascade software instllation</h2>
-<p>If you have StrainCascade already installed but would like to update the software (scripts) without reinstalling Apptainer images or databeses, you can choose <code>n</code> when prompted for a full installation. You will then be prompted if you want to update the StrainCascade software: <code>Do you want to update the StrainCascade software (scripts)? (y/n)</code>. If you choose <code>y</code> all current StrainCascade scripts will be updated.</p>
-<p>This option is particularly useful in scenarios where:</p>
-<ul>
-<li>There are improvements or bug fixes in the current release of StrainCascade software available that you want to use.</li>
-</ul>
-<p><strong>Note:</strong> This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.</p>
+<section id="updating-your-existing-straincascade-installation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="updating-your-existing-straincascade-installation"><span class="header-section-number">6</span> Updating your existing StrainCascade installation</h2>
+<p>StrainCascade provides separate update mechanisms for its three main components: software scripts, Apptainer images, and databases. You can update each component independently using specific command-line flags with the straincascade command.</p>
+<p>To update the software scripts, use:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-us</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To update the Apptainer images, use:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-uai</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To update the databases, use:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">straincascade</span> <span class="at">-udb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These update options are particularly useful when you want to incorporate improvements, bug fixes, or new releases specific to each component without performing a complete reinstallation. For example, you might want to update just the databases when new reference data becomes available, or update the software scripts to access the latest features while keeping your existing images and databases.</p>
+<p><strong>Important Note:</strong> These individual update mechanisms are designed for minor version updates and patches. They do not replace the need for a complete reinstallation when major version releases introduce significant new features that affect multiple components of StrainCascade. In such cases, please refer to the full installation instructions for your specific version.</p>
 </section>
 <section id="caveats" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="caveats"><span class="header-section-number">7</span> CAVEATS</h2>
 <ul>
 <li><p><strong>PATH configuration for multiple installations:</strong> The installation process updates your <code>PATH</code> variable by modifying shell configuration files and/or the conda environment. StrainCascade generally supports multiple installations across different conda environments. If you experience issues, verify that your <code>$PATH</code> points to the correct StrainCascade installation.</p></li>
 <li><p><strong>Managing Apptainer images after updates:</strong> When re-installing Apptainer images after a StrainCascade update, newer versions (indicated by a higher :v#) of a former image may be downloaded. Although older versions are typically removed (e.g., when using <code>straincascade --update-images</code>), there may be cases where previous Apptainer images remain. In such cases, StrainCascade will prioritize the first matching image, which may not always be the latest version. While this usually doesn’t cause errors, for optimal functionality, it’s recommended to check the <code>apptainer_images</code> directory and remove outdated versions after re-installations. You can find the <code>apptainer_images</code> directory in the StrainCascade installation directory and easily navigate to it with the following command (activate the conda environment first if necessary):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/../apptainer_images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$(</span><span class="fu">dirname</span> <span class="va">$(</span><span class="fu">which</span> straincascade<span class="va">))</span>/../apptainer_images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 
 

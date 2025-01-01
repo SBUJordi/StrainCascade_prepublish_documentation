@@ -18,7 +18,7 @@
     "href": "installation.html",
     "title": "Installation",
     "section": "",
-    "text": "Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)\n~ 580GB disk space software and reference databases\nFor optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM)."
+    "text": "Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)\n~ 580GB disk space software and reference databases\nFor optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM). If you run SC15 for de novo tree generation more than 100GB of RAM might be required."
   },
   {
     "objectID": "overview.html",
@@ -46,14 +46,14 @@
     "href": "installation.html#system-requirements",
     "title": "Installation",
     "section": "",
-    "text": "Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)\n~ 580GB disk space software and reference databases\nFor optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM)."
+    "text": "Linux OS (e.g., CentOS, Ubuntu, Debian, etc.)\n~ 580GB disk space software and reference databases\nFor optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM). If you run SC15 for de novo tree generation more than 100GB of RAM might be required."
   },
   {
     "objectID": "installation.html#installation-dependencies",
     "href": "installation.html#installation-dependencies",
     "title": "Installation",
     "section": "2 Installation dependencies",
-    "text": "2 Installation dependencies\n\nGit\nApptainer\n(Optional: Conda/Miniconda)\nAll further software dependencies (listed in detail under Dependencies) are bundled in Apptainer images, which are automatically downloaded and used when installing/running StrainCascade. This approach enhances:\n\nEase of use: Simplified installation and execution process\nPortability: Consistent performance across different computing environments\nReproducibility: Ensures identical software environments for all users\nVersion control: Precise management of software versions and their interactions\nIsolation: Minimises conflicts with existing system libraries"
+    "text": "2 Installation dependencies\n\nGit\nApptainer\n(Recommended: Bash as command-line shell)\n(Optional: Conda/Miniconda)\nAll further software dependencies (listed in detail under Dependencies) are bundled in Apptainer images, which are automatically downloaded and used when installing/running StrainCascade. This approach enhances:\n\nEase of use: Simplified installation and execution process\nPortability: Consistent performance across different computing environments\nReproducibility: Ensures identical software environments for all users\nVersion control: Precise management of software versions and their interactions\nIsolation: Minimises conflicts with existing system libraries"
   },
   {
     "objectID": "installation.html#installation-steps",
@@ -180,5 +180,12 @@
     "title": "Usage",
     "section": "6 CAVEATS",
     "text": "6 CAVEATS\n\nConda environment and PATH variable in SBATCH jobs: When submitting sbatch jobs, it is important to note that your Conda environment will not remain active. If you have multiple installations of StrainCascade, each installation will add its respective paths to the PATH variable. Only by activating the correct Conda environment in your sbatch script (not implement in above examples) will you ensure that the appropriate paths are used, allowing StrainCascade to function as expected. Without this activation, sbatch jobs may inadvertently use incorrect paths, potentially leading to errors or unexpected behaviour."
+  },
+  {
+    "objectID": "installation.html#updating-your-existing-straincascade-installation",
+    "href": "installation.html#updating-your-existing-straincascade-installation",
+    "title": "Installation",
+    "section": "6 Updating your existing StrainCascade installation",
+    "text": "6 Updating your existing StrainCascade installation\nStrainCascade provides separate update mechanisms for its three main components: software scripts, Apptainer images, and databases. You can update each component independently using specific command-line flags with the straincascade command.\nTo update the software scripts, use:\nstraincascade -us\nTo update the Apptainer images, use:\nstraincascade -uai\nTo update the databases, use:\nstraincascade -udb\nThese update options are particularly useful when you want to incorporate improvements, bug fixes, or new releases specific to each component without performing a complete reinstallation. For example, you might want to update just the databases when new reference data becomes available, or update the software scripts to access the latest features while keeping your existing images and databases.\nImportant Note: These individual update mechanisms are designed for minor version updates and patches. They do not replace the need for a complete reinstallation when major version releases introduce significant new features that affect multiple components of StrainCascade. In such cases, please refer to the full installation instructions for your specific version."
   }
 ]

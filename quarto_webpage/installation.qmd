@@ -8,13 +8,15 @@ title: "Installation"
 
 -   \~ 580GB disk space software and reference databases
 
--   For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM).
+-   For optimal performance, we recommend running StrainCascade with 32 CPU cores, with 3GB of RAM allocated per core (= total of 96GB of RAM). If you run SC15 for de novo tree generation more than 100GB of RAM might be required.
 
 ## Installation dependencies
 
 -   [Git](https://git-scm.com/)
 
 -   [Apptainer](https://apptainer.org/)
+
+-   (Recommended: [Bash](https://tiswww.case.edu/php/chet/bash/bashtop.html) as command-line shell)
 
 -   (Optional: [Conda/Miniconda](https://docs.anaconda.com/miniconda/))
 
@@ -162,21 +164,38 @@ Do you want to install checkm2_db? (y/n)
 
 By answering `y` or `n` to each prompt, you can customise the installation to your specific needs.
 
-## Updating existing StraingCascade software instllation
+## Updating your existing StrainCascade installation
 
-If you have StrainCascade already installed but would like to update the software (scripts) without reinstalling Apptainer images or databeses, you can choose `n` when prompted for a full installation. You will then be prompted if you want to update the StrainCascade software: `Do you want to update the StrainCascade software (scripts)? (y/n)`. If you choose `y` all current StrainCascade scripts will be updated.
+StrainCascade provides separate update mechanisms for its three main components: software scripts, Apptainer images, and databases. You can update each component independently using specific command-line flags with the straincascade command.
 
-This option is particularly useful in scenarios where:
+To update the software scripts, use:
 
--   There are improvements or bug fixes in the current release of StrainCascade software available that you want to use.
+``` bash
+straincascade -us
+```
 
-**Note:** This will not replace the necessity of re-installment after new major version releases of StrainCase with new features, Apptainer images or databases.
+To update the Apptainer images, use:
+
+``` bash
+straincascade -uai
+```
+
+To update the databases, use:
+
+``` bash
+straincascade -udb
+```
+
+These update options are particularly useful when you want to incorporate improvements, bug fixes, or new releases specific to each component without performing a complete reinstallation. For example, you might want to update just the databases when new reference data becomes available, or update the software scripts to access the latest features while keeping your existing images and databases.
+
+
+**Important Note:** These individual update mechanisms are designed for minor version updates and patches. They do not replace the need for a complete reinstallation when major version releases introduce significant new features that affect multiple components of StrainCascade. In such cases, please refer to the full installation instructions for your specific version.
 
 ## CAVEATS
 
 -   **PATH configuration for multiple installations:** The installation process updates your `PATH` variable by modifying shell configuration files and/or the conda environment. StrainCascade generally supports multiple installations across different conda environments. If you experience issues, verify that your `$PATH` points to the correct StrainCascade installation.
 
--   **Managing Apptainer images after updates:** When re-installing Apptainer images after a StrainCascade update, newer versions (indicated by a higher :v#) of a former image may be downloaded. Although older versions are typically removed (e.g., when using `straincascade --update-images`), there may be cases where previous Apptainer images remain. In such cases, StrainCascade will prioritize the first matching image, which may not always be the latest version. While this usually doesn't cause errors, for optimal functionality, it's recommended to check the `apptainer_images` directory and remove outdated versions after re-installations. You can find the `apptainer_images` directory in the StrainCascade installation directory and easily navigate to it with the following command (activate the conda environment first if necessary):
+-   **Managing Apptainer images after updates:** When re-installing Apptainer images after a StrainCascade update, newer versions (indicated by a higher :v#) of a former image may be downloaded. Although older versions are typically removed (e.g., when using `straincascade -uai`), there may be cases where previous Apptainer images remain. In such cases, StrainCascade will prioritize the first matching image, which may not always be the latest version. While this usually doesn't cause errors, we recommend to check the `apptainer_images` directory and remove outdated versions after re-installations. You can find the `apptainer_images` directory in the StrainCascade installation directory. You can easily navigate to the `apptainer_images` directory with the following command (activate the conda environment first if necessary):
 
     ``` bash
     cd $(dirname $(which straincascade))/../apptainer_images
